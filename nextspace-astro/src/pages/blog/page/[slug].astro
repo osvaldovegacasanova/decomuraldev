@@ -1,0 +1,80 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import Pagination from "@/components/Pagination.astro";
+import config from "@/config/config.json";
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+
+const BLOG_FOLDER = "blog";
+
+const { slug } = Astro.params;
+const postIndex = await getListPage(
+  BLOG_FOLDER,
+  "-index"
+);
+if(postIndex.data.draft){
+  return Astro.redirect("/404");
+}
+const posts = await getSinglePage(BLOG_FOLDER);
+const sortedPosts = sortByDate(posts);
+const totalPages = Math.ceil(posts.length / config.settings.pagination);
+const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
+const indexOfLastPost = currentPage * config.settings.pagination;
+const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
+const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+  const posts = await getSinglePage(BLOG_FOLDER);
+  const totalPages = Math.ceil(posts.length / config.settings.pagination);
+  const paths = [];
+
+  for (let i = 1; i < totalPages; i++) {
+    paths.push({
+      params: {
+        slug: (i + 1).toString(),
+      },
+    });
+  }
+  return paths;
+}
+---
+
+<Base
+  title={postIndex.data.title}
+  meta_title={postIndex.data.meta_title}
+  image={postIndex.data.image}
+  description={postIndex.data.description}
+>
+  <!-- Breadcrumbs -->
+  <div class="blog-breadcrumbs">
+    <a href="/">Home</a>
+    <span>–</span>
+    <a href="/blog">Blog</a>
+    <span>–</span>
+    <span>Página {currentPage}</span>
+  </div>
+
+  <!-- Blog Header -->
+  <header class="blog-header">
+    <p class="eyebrow">Blog</p>
+    <h1>{postIndex?.data.title || "Blog"}</h1>
+  </header>
+
+  <!-- Blog Grid -->
+  <section class="blog-grid">
+    {currentPosts.map((post, i) => <BlogCard data={post} index={i} />)}
+  </section>
+
+  <!-- Pagination -->
+  {totalPages > 1 && (
+    <div style="padding: 0 clamp(1rem, 5vw, 3.5rem) 4rem;">
+      <Pagination
+        section={BLOG_FOLDER}
+        currentPage={currentPage}
+        totalPages={totalPages}
+      />
+    </div>
+  )}
+</Base>

@@ -1,0 +1,683 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coleciones Infantiles | Decomural</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&amp;family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Segment: Announcement Banner -->
+  <div class="announcement">
+    Disfruta de descuentos exclusivos de hasta el 30% en papeles murales seleccionados.
+  </div>
+  <!-- Segment: Header & Mega Menu -->
+  <header class="site-header">
+    <div class="logo">
+      <img src="Logo-Decomural-02-1024x193.webp" alt="Decomural" />
+    </div>
+    <div class="nav-group">
+      <nav class="primary-nav">
+        <ul>
+          <li><a href="#" data-mega="true" data-collection="Van Gogh II|Textum|Smart Surfaces|Elements|Drawn into Nature|Mia + Paul|Stories of Life|Rafias">Diseños</a></li>
+          <li><a href="#" data-mega="true" data-collection="Anna D'Andrea">Personalizados</a></li>
+          <li><a href="#" class="active" data-mega="true" data-collection="Doodleedo|Happy|Smalltalk">Infantiles</a></li>
+          <li><a href="#" data-mega="true" data-collection="Folia|Muravinil|Muraltec|Duplex">Vinilicos</a></li>
+          <li><a href="#" data-collection="">Cortinas y Persianas</a></li>
+          <li><a href="#" data-collection="">Blog</a></li>
+          <li><a href="#" data-collection="">Puntos de Venta</a></li>
+        </ul>
+      </nav>
+      <div class="mega-menu" aria-hidden="true">
+        <div class="mega-columns">
+          <div class="mega-col">
+            <p class="mega-heading">Colección</p>
+            <ul class="mega-list" data-collection-list>
+              <li>Van Gogh II</li>
+              <li>Textum</li>
+              <li>Smart Surfaces</li>
+              <li>Elements</li>
+              <li>Drawn into Nature</li>
+              <li>Mia + Paul</li>
+              <li>Stories of Life</li>
+              <li>Rafias</li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-heading">Color</p>
+            <ul class="mega-list swatches">
+              <li><span class="dot black"></span> Negro</li>
+              <li><span class="dot blue"></span> Azul</li>
+              <li><span class="dot brown"></span> Marrón</li>
+              <li><span class="dot green"></span> Verde</li>
+              <li><span class="dot grey"></span> Gris</li>
+              <li><span class="dot neutral"></span> Neutro</li>
+              <li><span class="dot pink"></span> Rosa</li>
+              <li><span class="dot purple"></span> Púrpura</li>
+              <li><span class="dot red"></span> Rojo</li>
+              <li><span class="dot white"></span> Blanco</li>
+              <li><span class="dot yellow"></span> Amarillo</li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-heading">Patrón</p>
+            <ul class="mega-list">
+              <li>Abstract</li>
+              <li>Animal</li>
+              <li>Floral</li>
+              <li>Geométrico</li>
+              <li>Landscape</li>
+              <li>Tropical</li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-heading">Información</p>
+            <ul class="mega-list">
+              <li>Guía paso a paso</li>
+              <li>FAQs</li>
+            </ul>
+          </div>
+          <div class="mega-col highlight">
+            <div class="mega-image">
+              <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&q=80" alt="Mural inspiration" />
+            </div>
+            <p class="mega-heading">Mural destacado</p>
+            <p class="mega-text">Descubre el mural del año y dale vida a tu espacio infantil.</p>
+            <button class="ghost small">Ver Colección</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Segment: Hero Slider -->
+    <section class="hero-slider swiper" data-hero-swiper aria-label="Colecciones destacadas" id="slider">
+      <div class="swiper-wrapper slider-track" data-slider-track></div>
+      <button class="slider-control prev swiper-button-prev" type="button" aria-label="Ver colecci&oacute;n anterior" data-slider-prev></button>
+      <button class="slider-control next swiper-button-next" type="button" aria-label="Ver pr&oacute;xima colecci&oacute;n" data-slider-next></button>
+      <div class="slider-dots swiper-pagination" data-slider-dots></div>
+    </section>
+
+
+
+    <!-- Segment: Collection Showcase -->
+    <section class="collection-showcase">
+      <div class="section-header">
+        <p class="eyebrow">L&iacute;nea</p>
+        <h2>Dise&ntilde;os</h2>
+      </div>
+      <div class="collection-showcase-grid" data-collection-showcase="disenos"></div>
+      <noscript>
+        <p>Activa JavaScript para ver las colecciones destacadas.</p>
+      </noscript>
+    </section>
+    <section class="collection-showcase">
+      <div class="section-header">
+        <p class="eyebrow">L&iacute;nea</p>
+        <h2>Personalizados</h2>
+      </div>
+      <div class="collection-showcase-grid" data-collection-showcase="personalizados"></div>
+      <noscript>
+        <p>Activa JavaScript para ver las colecciones destacadas.</p>
+      </noscript>
+    </section>
+    <section class="collection-showcase">
+      <div class="section-header">
+        <p class="eyebrow">L&iacute;nea</p>
+        <h2>Infantiles</h2>
+      </div>
+      <div class="collection-showcase-grid" data-collection-showcase="infantiles"></div>
+      <noscript>
+        <p>Activa JavaScript para ver las colecciones destacadas.</p>
+      </noscript>
+    </section>
+    <section class="collection-showcase">
+      <div class="section-header">
+        <p class="eyebrow">L&iacute;nea</p>
+        <h2>Vin&iacute;licos</h2>
+      </div>
+      <div class="collection-showcase-grid" data-collection-showcase="vinilicos"></div>
+      <noscript>
+        <p>Activa JavaScript para ver las colecciones destacadas.</p>
+      </noscript>
+    </section>
+
+
+    <!-- Segment: FAQ -->
+    <section class="faq">
+      <div class="faq-header">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Todo sobre nuestros murales a medida</h2>
+        <p class="lede">Inspirado en la secci&oacute;n FAQ del sitio original, este bloque agrupa las dudas m&aacute;s comunes para que el cliente contin&uacute;e su compra sin fricciones.</p>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="true">
+            &iquest;Qu&eacute; es un mural bespoke?
+          </button>
+          <div class="faq-body">
+            <p>Trabajamos con una imagen completa en lugar de un patr&oacute;n repetido, imprimi&eacute;ndola seg&uacute;n las medidas exactas de tu muro para lograr un acabado artesanal.</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            &iquest;Puedo pedir una muestra?
+          </button>
+          <div class="faq-body" hidden>
+            <p>Ofrecemos packs de muestra con las cuatro terminaciones disponibles. As&iacute; puedes evaluar textura y color antes de confirmar tu pedido definitivo.</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            &iquest;C&oacute;mo debo medir mi pared?
+          </button>
+          <div class="faq-body" hidden>
+            <p>Mide la altura y el ancho en varios puntos y comparte siempre la lectura mayor. De esta forma garantizamos que el mural cubra por completo el espacio.</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            &iquest;En qu&eacute; estancias puedo usar un mural?
+          </button>
+          <div class="faq-body" hidden>
+            <p>Nuestras bases resistentes permiten instalarlo en dormitorios, salas, estudios e incluso ba&ntilde;os ventilados, siempre evitando el contacto directo con el agua.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Segment: Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Atenci&oacute;n</h3>
+          <ul>
+            <li><a href="#">Env&iacute;os y devoluciones</a></li>
+            <li><a href="#">Estado de mi pedido</a></li>
+            <li><a href="#">Gu&iacute;a de instalaci&oacute;n</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Empresa</h3>
+          <ul>
+            <li><a href="#">Nuestra historia</a></li>
+            <li><a href="#">Sustentabilidad</a></li>
+            <li><a href="#">Prensa</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Inspiraci&oacute;n</h3>
+          <ul>
+            <li><a href="#">Blog Deco</a></li>
+            <li><a href="#">Cat&aacute;logo digital</a></li>
+            <li><a href="#">Colecciones 2025</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <p class="eyebrow">Newsletter</p>
+          <h3>Novedades exclusivas</h3>
+          <p>Suscr&iacute;bete para recibir lanzamientos, colaboraciones y acceso anticipado a ofertas especiales.</p>
+          <form class="newsletter-form">
+            <label class="sr-only" for="newsletter-email">Correo electr&oacute;nico</label>
+            <input id="newsletter-email" type="email" placeholder="tu@email.com" required />
+            <button type="submit">Suscribirme</button>
+          </form>
+          <small>Al suscribirte aceptas nuestras pol&iacute;ticas de privacidad.</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="social-links" aria-label="Redes sociales">
+        <a href="#" aria-label="Instagram">Ig</a>
+        <a href="#" aria-label="Pinterest">Pi</a>
+        <a href="#" aria-label="Facebook">Fb</a>
+        <a href="#" aria-label="YouTube">Yt</a>
+      </div>
+      <p>© 2025 Desarrollado para Decomural por Pixory Marketing & Data Analytics.</p>
+      <div class="payments">
+        <span>Visa</span>
+        <span>Mastercard</span>
+        <span>PayPal</span>
+        <span>Amex</span>
+      </div>
+    </div>
+  </footer>
+  <!-- Segment: Page Script -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const encodeAsset = (path = '') => (path ? encodeURI(path) : '');
+
+      const heroSlides = [
+        {
+          eyebrow: 'Colecci&oacute;n infantil',
+          title: 'Stories of Life',
+          description: 'Murales envolventes con nubes et&eacute;reas y fauna ilustrada.',
+          sampleImage: 'Stories of Life/369223.webp',
+          ambientImage: 'Stories of Life/369223_3-768x512.webp',
+          background: '#3d1c1f',
+          textColor: '#ffffff',
+          link: 'catalogo.html',
+          linkLabel: 'Explorar Stories of Life'
+        },
+        {
+          eyebrow: 'Texturas naturales',
+          title: 'Elements II',
+          description: 'Elementos naturales para un living contempor&aacute;neo.',
+          sampleImage: 'Elements II/300434.webp',
+          ambientImage: 'Elements II/300434_4-768x1024.webp',
+          background: '#10261d',
+          textColor: '#ffffff',
+          link: '#colecciones',
+          linkLabel: 'Explorar Elements II'
+        }
+      ];
+
+      const storiesOfLifeSkus = [
+        { codigo: '369223', filename: '369223_3-768x512.webp', hoverFilename: '369223.webp', disponible: 1, color: 'Gris' },
+        { codigo: '369224', filename: '369224_3-768x512.webp', hoverFilename: '369224.webp', disponible: 1, color: 'Marrón' },
+        { codigo: '369226', filename: '369226_3-768x512.webp', hoverFilename: '369226.webp', disponible: 1, color: 'Gris' },
+        { codigo: '369251', filename: '369251_3-768x512.webp', hoverFilename: '369251.webp', disponible: 1, color: 'Marrón' },
+        { codigo: '369253', filename: '369253_3-768x512.webp', hoverFilename: '369253.webp', disponible: 1, color: 'Blanco' },
+        { codigo: '369254', filename: '369254.webp', hoverFilename: '369254_6.webp', disponible: 1, color: 'Beige' },
+        { codigo: '369255', filename: '369255_3-768x512.webp', hoverFilename: '369255.webp', disponible: 1, color: 'Gris' },
+        { codigo: '369256', filename: '369256.webp', hoverFilename: '369256_6.webp', disponible: 1, color: 'Beige' },
+        { codigo: '369257', filename: '369257_3-768x512.webp', hoverFilename: '369257.webp', disponible: 1, color: 'Marrón' },
+        { codigo: '369258', filename: '369258.webp', hoverFilename: '369258_6.webp', disponible: 1, color: 'Azul' },
+        { codigo: '392161', filename: '392161_3-768x512.webp', hoverFilename: '392161.webp', disponible: 1, color: 'Beige' },
+        { codigo: '392163', filename: '392163.webp', hoverFilename: '392163_6.webp', disponible: 1, color: 'Gris' },
+        { codigo: '392164', filename: '392164_2-768x417.webp', hoverFilename: '392164.webp', disponible: 1, color: 'Beige' },
+        { codigo: '396471', filename: '396471_3-768x512.webp', hoverFilename: '396471_1.webp', disponible: 1, color: 'Mix' },
+        { codigo: '396472', filename: '396472_13-768x512.webp', hoverFilename: '', disponible: 0, color: 'default' },
+        { codigo: '396473', filename: '396473_2-768x512.webp', hoverFilename: '396473.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396474', filename: '396474_3-768x512.webp', hoverFilename: '396474.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396481', filename: '396481_3-768x576.webp', hoverFilename: '396481.webp', disponible: 1, color: 'Verde' },
+        { codigo: '396482', filename: '396482.webp', hoverFilename: '396482_6.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396483', filename: '396483_3-768x512.webp', hoverFilename: '396483.webp', disponible: 1, color: 'Beige' },
+        { codigo: '396484', filename: '396484_4-768x572.webp', hoverFilename: '396484.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396485', filename: '396485.webp', hoverFilename: '396485_6.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396486', filename: '396486_3-768x512.webp', hoverFilename: '396486.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396501', filename: '396501_2-768x512.webp', hoverFilename: '396501.webp', disponible: 1, color: 'Mix' },
+        { codigo: '396502', filename: '396502.webp', hoverFilename: '', disponible: 1, color: 'Mix' }
+      ];
+      const disenoCollections = ['Stories of life', 'Elements 2'];
+      const collectionShowcases = {
+        disenos: [
+          {
+            eyebrow: 'Marca I',
+            title: 'Textum',
+            description: 'Intricate detailing brings the vibrant cityscape of Stories of Life to life &mdash; resulting in una pieza que cautiva los sentidos.',
+            image: 'Stories of Life/369223_3-768x512.webp',
+            link: 'catalogo.html',
+            linkLabel: 'Explorar Textum'
+          },
+          {
+            eyebrow: 'Marca II',
+            title: 'Rafias',
+            description: 'Nuestra serie Elements II aporta textura mineral y acabados mates de alto desempeno, perfectos para livings contemporaneos.',
+            image: 'Elements II/300434_4-768x1024.webp',
+            link: '#colecciones',
+            linkLabel: 'Explorar Rafias'
+          },
+          {
+            eyebrow: 'Marca I',
+            title: 'Mia + Paul',
+            description: 'La coleccion Drawn into Nature envuelve los ventanales con vegetacion botanica y tonos borgona sofisticados.',
+            image: 'Drawn into Nature - Decomural_files/306887_7-768x512.webp',
+            link: '#',
+            linkLabel: 'Explorar Mia + Paul'
+          }
+        ],
+        personalizados: [
+          {
+            eyebrow: 'Anima Deco',
+            title: 'Antique',
+            description: 'Paneles hechos a medida con arenas y grafitos que combinan con mobiliario mid-century.',
+            image: 'Elements II/300431_3-768x1024.webp',
+            link: 'catalogo.html',
+            linkLabel: 'Explorar Antique'
+          },
+          {
+            eyebrow: 'Anima Deco',
+            title: 'Aves',
+            description: 'Llevamos obras maestras a gran formato para comedores o livings con asesoria uno a uno.',
+            image: 'Van Gogh II/Catalogo-Van-Gogh-II_Pagina_02_Imagen_0002.webp',
+            link: '#',
+            linkLabel: 'Explorar Aves'
+          },
+          {
+            eyebrow: 'Anima Deco',
+            title: 'Botanical',
+            description: 'Paisajes botanicos sobre pedido que coordinamos con textiles y pinturas exclusivas.',
+            image: 'Drawn into Nature - Decomural_files/306894.webp',
+            link: '#',
+            linkLabel: 'Explorar Botanical'
+          }
+        ],
+        infantiles: [
+          {
+            eyebrow: 'Marca I',
+            title: 'Doodleedo',
+            description: 'Stories of Life crea atmosferas suaves con cielos nebulosos y constelaciones.',
+            image: 'Stories of Life/369256.webp',
+            link: 'catalogo.html',
+            linkLabel: 'Explorar Doodleedo'
+          },
+          {
+            eyebrow: 'Marca II',
+            title: 'Happy',
+            description: 'Ilustraciones en acuarela con animales sonados para habitaciones de juego.',
+            image: 'Stories of Life/369257_3-768x512.webp',
+            link: '#',
+            linkLabel: 'Explorar Happy'
+          },
+          {
+            eyebrow: 'Marca III',
+            title: 'Smalltalk',
+            description: 'Murales envolventes con lunas brillantes y follaje que invitan al descanso.',
+            image: 'Stories of Life/369258.webp',
+            link: '#',
+            linkLabel: 'Explorar Smalltalk'
+          }
+        ],
+        vinilicos: [
+          {
+            eyebrow: 'Marca I',
+            title: 'Muravinil',
+            description: 'Vinilos texturizados pensados para alto tr\u00e1fico con acabado mate premium.',
+            image: 'Elements II/300434.webp',
+            link: '#',
+            linkLabel: 'Explorar Muravinil'
+          },
+          {
+            eyebrow: 'Marca II',
+            title: 'Folia',
+            description: 'Paneles lavables con follajes exuberantes ideales para cocinas y pasillos.',
+            image: 'Drawn into Nature - Decomural_files/306887_3-768x512.webp',
+            link: '#',
+            linkLabel: 'Explorar Folia'
+          },
+          {
+            eyebrow: 'Marca III',
+            title: 'Muraltec',
+            description: 'Vinilos que imitan fibras tejidas para estudios o terrazas techadas.',
+            image: 'Drawn into Nature - Decomural_files/306886_7-768x543.webp',
+            link: '#',
+            linkLabel: 'Explorar Muraltec'
+          }
+        ]
+      };
+
+      const normalizeColorKey = (value = '') =>
+        value
+          .toString()
+          .trim()
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+
+      const getColorClass = (colorName = '') => {
+        const colorKey = normalizeColorKey(colorName);
+        const map = {
+          gris: 'grey',
+          marron: 'brown',
+          blanco: 'white',
+          beige: 'beige',
+          azul: 'blue',
+          mix: 'mix',
+          default: 'default',
+          verde: 'green'
+        };
+        return map[colorKey] || '';
+      };
+
+      const renderHeroSwiper = () => {
+        const track = document.querySelector('[data-slider-track]');
+        const pagination = document.querySelector('[data-slider-dots]');
+        const sliderEl = document.querySelector('[data-hero-swiper]');
+        if (!track || !pagination || !sliderEl) return;
+
+        track.innerHTML = heroSlides
+          .map(
+            (slide) => `
+          <article class="swiper-slide hero-slide" style="background:${slide.background}; --slide-text:${slide.textColor};">
+            <div class="slide-panel">
+              <img src="${encodeAsset(slide.sampleImage)}" alt="Detalle ${slide.title}" loading="lazy" />
+            </div>
+            <div class="slide-copy">
+              <p class="eyebrow">${slide.eyebrow}</p>
+              <h2>${slide.title}</h2>
+              <p>${slide.description}</p>
+              <a class="ghost invert" href="${slide.link}">${slide.linkLabel}</a>
+            </div>
+            <div class="slide-panel">
+              <img src="${encodeAsset(slide.ambientImage)}" alt="${slide.title} en ambiente" loading="lazy" />
+            </div>
+          </article>
+        `
+          )
+          .join('');
+
+        new Swiper(sliderEl, {
+          loop: true,
+          autoplay: {
+            delay: 6000,
+            disableOnInteraction: false
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          },
+          pagination: {
+            el: pagination,
+            clickable: true
+          },
+          speed: 900
+        });
+      };
+
+      const renderCollectionShowcases = () => {
+        const grids = document.querySelectorAll('[data-collection-showcase]');
+        grids.forEach((grid) => {
+          const key = grid.getAttribute('data-collection-showcase');
+          const items = collectionShowcases[key] || [];
+          grid.innerHTML = items.length
+            ? items
+                .map(
+                  (item) => `
+              <article class="showcase-card">
+                <div class="showcase-media">
+                  <img src="${encodeAsset(item.image)}" alt="${item.title}" loading="lazy" />
+                </div>
+                <div class="showcase-body">
+                  <p class="showcase-eyebrow serif">${item.eyebrow}</p>
+                  <h3 class="showcase-title">${item.title}</h3>
+                  <p>${item.description}</p>
+                  ${
+                    item.link
+                      ? `<a class="text-link" href="${item.link}">${item.linkLabel || 'Ver colecci&oacute;n'}</a>`
+                      : ''
+                  }
+                </div>
+              </article>
+            `
+                )
+                .join('')
+            : '<p class="empty-state">Pr&oacute;ximamente.</p>';
+        });
+
+        const total = Object.values(collectionShowcases).reduce((sum, list) => sum + (list?.length || 0), 0);
+        const resultsCount = document.querySelector('[data-results-count]');
+        if (resultsCount) {
+          resultsCount.textContent = `Colecciones destacadas: ${total}`;
+        }
+      };
+
+      const renderColorFilter = () => {
+        const colorFilter = document.querySelector('[data-color-filter]');
+        if (!colorFilter) return;
+
+        const uniqueColors = [];
+        const seen = new Set();
+        storiesOfLifeSkus.forEach((item) => {
+          const colorKey = normalizeColorKey(item.color);
+          if (!colorKey || seen.has(colorKey)) return;
+          seen.add(colorKey);
+          uniqueColors.push({ key: colorKey, label: item.color });
+        });
+
+        if (!uniqueColors.length) {
+          colorFilter.innerHTML = '<li>Pr&oacute;ximamente</li>';
+          return;
+        }
+
+        colorFilter.innerHTML = uniqueColors
+          .map(({ label, key }) => {
+            const dotClass = getColorClass(key);
+            const dot = dotClass ? `<span class="dot ${dotClass}"></span>` : '';
+            return `<li>${dot}${label}</li>`;
+          })
+          .join('');
+      };
+
+      const renderColeccionFilter = () => {
+        const coleccionFilter = document.querySelector('[data-collection-filter]');
+        if (!coleccionFilter) return;
+
+        if (!disenoCollections.length) {
+          coleccionFilter.innerHTML = '<li>Pr&oacute;ximamente</li>';
+          return;
+        }
+
+        coleccionFilter.innerHTML = disenoCollections
+          .map((name) => `<li>${name}</li>`)
+          .join('');
+      };
+
+      renderHeroSwiper();
+      renderCollectionShowcases();
+      renderColorFilter();
+      renderColeccionFilter();
+
+      const toggle = document.querySelector('.hero-toggle');
+      const heroDescription = document.getElementById('hero-description');
+      const heroCopy = {
+        short: 'Desde un cielo lleno de nubes y aves hasta un jardín etéreo y encantado, nuestros murales infantiles azules crean un punto focal hipnotizante en cualquier habitación. Estos murales a medida están diseñados específicamente para adaptarse a tu espacio.',
+        long: 'Desde un cielo lleno de nubes y aves hasta un jardín etéreo y encantado, nuestros murales infantiles azules crean un punto focal hipnotizante en cualquier habitación. Estos murales a medida están diseñados específicamente para adaptarse a tu espacio.<br><br>Diseñados según tus requisitos exactos, cada mural se siente único. Desde escenas clásicas de casas de campo hasta bosques tropicales llenos de flores exuberantes, los murales azules aportan un toque de elegancia a tu decoración. Úsalos en la sala o la cocina como elemento clave de tu diseño, equilibrados con colores que armonicen con los puntos focales del mural. O crea una habitación de ensueño donde el mural azul te rodee de belleza natural. Descubre también toda nuestra colección de murales a medida.'
+      };
+
+      if (toggle && heroDescription) {
+        const setExpandedState = (expanded) => {
+          heroDescription.innerHTML = expanded ? heroCopy.long : heroCopy.short;
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggle.textContent = expanded ? 'Leer menos' : 'Leer más';
+        };
+
+        toggle.addEventListener('click', () => {
+          const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+          setExpandedState(!isExpanded);
+        });
+
+        setExpandedState(false);
+      }
+
+      const navLinks = document.querySelectorAll('.primary-nav [data-collection]');
+      const collectionList = document.querySelector('[data-collection-list]');
+      const megaTriggers = document.querySelectorAll('.primary-nav [data-mega="true"]');
+      const nonMegaLinks = document.querySelectorAll('.primary-nav a:not([data-mega="true"])');
+      const renderCollection = (link) => {
+        if (!collectionList || !link) return;
+        const values = (link.getAttribute('data-collection') || '')
+          .split('|')
+          .map((v) => v.trim())
+          .filter(Boolean);
+        collectionList.innerHTML = values.length
+          ? values.map((text) => `<li>${text}</li>`).join('')
+          : '<li>Próximamente</li>';
+      };
+
+      navLinks.forEach((link) => {
+        link.addEventListener('mouseenter', () => renderCollection(link));
+        link.addEventListener('focus', () => renderCollection(link));
+      });
+
+      if (navLinks.length) {
+        renderCollection(navLinks[0]);
+      }
+
+      const navGroup = document.querySelector('.nav-group');
+      const megaMenu = document.querySelector('.mega-menu');
+      let megaTimer;
+
+      const openMegaMenu = () => {
+        if (!navGroup || !megaMenu) return;
+        clearTimeout(megaTimer);
+        navGroup.classList.add('mega-open');
+        megaMenu.setAttribute('aria-hidden', 'false');
+      };
+
+      const closeMegaMenu = (delay = 150) => {
+        if (!navGroup || !megaMenu) return;
+        clearTimeout(megaTimer);
+        megaTimer = setTimeout(() => {
+          navGroup.classList.remove('mega-open');
+          megaMenu.setAttribute('aria-hidden', 'true');
+        }, delay);
+      };
+
+      if (navGroup && megaMenu) {
+        megaTriggers.forEach((trigger) => {
+          trigger.addEventListener('mouseenter', openMegaMenu);
+          trigger.addEventListener('focus', openMegaMenu);
+        });
+
+        ['mouseenter', 'focusin'].forEach((evt) => {
+          megaMenu.addEventListener(evt, openMegaMenu);
+        });
+
+        navGroup.addEventListener('mouseleave', () => closeMegaMenu());
+        megaMenu.addEventListener('mouseleave', () => closeMegaMenu());
+
+        navGroup.addEventListener('focusout', (event) => {
+          if (event.relatedTarget && navGroup.contains(event.relatedTarget)) return;
+          closeMegaMenu();
+        });
+
+        megaMenu.addEventListener('focusout', (event) => {
+          if (event.relatedTarget && megaMenu.contains(event.relatedTarget)) return;
+          closeMegaMenu();
+        });
+
+        nonMegaLinks.forEach((link) => {
+          link.addEventListener('mouseenter', () => closeMegaMenu(0));
+          link.addEventListener('focus', () => closeMegaMenu(0));
+        });
+      }
+
+      const faqTriggers = document.querySelectorAll('.faq-trigger');
+      faqTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const expanded = trigger.getAttribute('aria-expanded') === 'true';
+          faqTriggers.forEach((btn) => {
+            if (btn !== trigger) {
+              btn.setAttribute('aria-expanded', 'false');
+              const sibling = btn.nextElementSibling;
+              if (sibling) sibling.hidden = true;
+            }
+          });
+          trigger.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          const body = trigger.nextElementSibling;
+          if (body) body.hidden = expanded;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

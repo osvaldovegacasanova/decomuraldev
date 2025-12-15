@@ -1,0 +1,238 @@
+---
+// Read hero slides data from generated JSON
+import slidesData from '@/data/heroSlides.json';
+
+// Sort by indexorder
+const slides = slidesData.sort((a, b) => a.indexorder - b.indexorder);
+
+// Map image filenames to paths
+const getImagePath = (filename, imagefolder, fallbackTitle) => {
+  if (!filename) return null;
+
+  // If imagefolder is provided, use it (NEW)
+  if (imagefolder) {
+    const normalizedFolder = imagefolder.replace(/\\/g, '/').replace(/^\/+/, '');
+    return `/images/wallpapers/${normalizedFolder}/${filename}`;
+  }
+
+  // TEMPORARY: Fallback for backward compatibility
+  // TODO: Remove after Excel migration complete
+  const folderMap = {
+    'Stories of Life': 'storiesoflife',
+    'Stories of life': 'storiesoflife',
+    'Elements II': 'elementsII',
+    'Decomural Vitacura': 'elementsII'
+  };
+  const folder = folderMap[fallbackTitle] || fallbackTitle.toLowerCase().replace(/\s+/g, '');
+  return `/images/wallpapers/${folder}/${filename}`;
+};
+---
+
+<section id="hero-slider" class="relative">
+  <div class="swiper decomural-hero-swiper">
+    <div class="swiper-wrapper">
+      {slides.map((slide) => {
+        const sampleImage = getImagePath(slide.sampleImage, slide.imagefolder, slide.title);
+        const ambientImage = getImagePath(slide.ambientImage, slide.imagefolder, slide.title);
+
+        // Generate CTA link based on slide type (CRITICAL FIX)
+        const ctaLink = slide.slidertype === 'url'
+          ? slide.link
+          : `/catalogo?coleccion=${slide.collection}`;
+
+        return (
+          <div
+            class="swiper-slide"
+            style={`background-color: ${slide.background || '#000'};`}
+          >
+            <div class="container">
+              <div class="slide-content grid grid-cols-1 lg:grid-cols-[1.8fr_4.2fr_5fr] gap-6 lg:gap-8 lg:items-stretch items-center h-[550px] py-12 lg:py-0">
+
+                {/* Left Image */}
+                {sampleImage && (
+                  <div class="slide-image-left hidden lg:block h-full">
+                    <img
+                      src={sampleImage}
+                      alt={`${slide.title} sample`}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+                {/* Center Content */}
+                <div class="slide-text flex flex-col justify-center gap-4 text-center lg:text-left" style={`color: ${slide.textColor || '#fff'};`}>
+                  {slide.eyebrow && (
+                    <p class="eyebrow uppercase tracking-widest" style="opacity: 0.8; color: inherit; font-size: 0.8rem;">
+                      {slide.eyebrow}
+                    </p>
+                  )}
+                  <h2 class="font-bold uppercase " style="font-family: var(--font-primary), 'Poppins', sans-serif; font-size: clamp(1.75rem, 4.5vw, 2.75rem); letter-spacing: 0.2em; margin: 0; color: inherit;">
+                    {slide.title}
+                  </h2>
+                  {slide.description && (
+                    <p class="text-base md:text-lg max-w-xl mx-auto lg:mx-0" style="margin: 0; line-height: 1.8; color: inherit;">
+                      {slide.description}
+                    </p>
+                  )}
+                  {slide.linkLabel && ctaLink && (
+                    <a
+                      href={ctaLink}
+                      class="btn btn-ghost inline-block px-6 py-2 border-2 border-current uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-colors self-center lg:self-start" style="font-size: 0.7rem; border-color: currentColor; margin-top: 0.5rem; color: inherit; width: fit-content;"
+                    >
+                      {slide.linkLabel}
+                    </a>
+                  )}
+                </div>
+
+                {/* Right Image */}
+                {ambientImage && (
+                  <div class="slide-image-right hidden lg:block h-full">
+                    <img
+                      src={ambientImage}
+                      alt={`${slide.title} ambiente`}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+                {/* Mobile: Show one image */}
+                {sampleImage && (
+                  <div class="slide-image-mobile lg:hidden mx-auto max-w-sm">
+                    <img
+                      src={sampleImage}
+                      alt={slide.title}
+                      class="w-full aspect-square object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    {/* Navigation Controls */}
+    <button class="hero-nav-button hero-nav-prev hidden lg:flex" aria-label="Previous slide">
+      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="hero-nav-button hero-nav-next hidden lg:flex" aria-label="Next slide">
+      <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    {/* Pagination */}
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<style>
+  .decomural-hero-swiper {
+    width: 100%;
+    height: auto;
+  }
+
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Custom navigation buttons */
+  .hero-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    background: #ffffff;
+    border: 1px solid #e5e5e0;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+    z-index: 10;
+  }
+
+  .hero-nav-button:hover {
+    background: #1a1a1a;
+    border-color: #1a1a1a;
+    color: #ffffff;
+  }
+
+  .hero-nav-button svg {
+    width: 8px;
+    height: 14px;
+  }
+
+  .hero-nav-prev {
+    left: clamp(0.5rem, 2vw, 1.5rem);
+  }
+
+  .hero-nav-next {
+    right: clamp(0.5rem, 2vw, 1.5rem);
+  }
+
+  /* Swiper pagination */
+  .swiper-pagination {
+    bottom: 1rem !important;
+  }
+
+  :global(.swiper-pagination-bullet) {
+    width: 32px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    background: white;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 900px) {
+    .slide-content {
+      min-height: auto !important;
+    }
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+
+  document.addEventListener('astro:page-load', () => {
+    const heroSwiper = new Swiper('.decomural-hero-swiper', {
+      modules: [Navigation, Pagination, Autoplay],
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.hero-nav-next',
+        prevEl: '.hero-nav-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  });
+</script>

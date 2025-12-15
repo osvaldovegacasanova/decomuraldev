@@ -1,0 +1,35 @@
+# build output
+dist/
+.output/
+.json/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+yarn.lock
+package-lock.json
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# ignore .astro directory
+.astro
+
+# ide
+.idea/
+
+# Excel master file (local only, never commit)
+../data.xlsx
+
+# Ensure generated JSON data files ARE committed
+!src/data/*.json

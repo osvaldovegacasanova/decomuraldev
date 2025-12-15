@@ -1,0 +1,304 @@
+---
+import menu from "@/config/menu.json";
+import social from "@/config/social.json";
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-columns">
+        <!-- Column 1: Atención -->
+        {menu.footer[0] && (
+          <div class="footer-column">
+            <h3>{menu.footer[0].title}</h3>
+            <ul>
+              {menu.footer[0].children.map((item) => (
+                <li><a href={item.url}>{item.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Column 2: Empresa -->
+        {menu.footer[1] && (
+          <div class="footer-column">
+            <h3>{menu.footer[1].title}</h3>
+            <ul>
+              {menu.footer[1].children.map((item) => (
+                <li><a href={item.url}>{item.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Column 3: Inspiración -->
+        {menu.footer[2] && (
+          <div class="footer-column">
+            <h3>{menu.footer[2].title}</h3>
+            <ul>
+              {menu.footer[2].children.map((item) => (
+                <li><a href={item.url}>{item.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Newsletter Section -->
+        <div class="footer-newsletter">
+          <p class="eyebrow">Newsletter</p>
+          <h3>Novedades exclusivas</h3>
+          <p>Suscríbete para recibir lanzamientos, colaboraciones y acceso anticipado a ofertas especiales.</p>
+          <form class="newsletter-form" action="#" method="post">
+            <label class="sr-only" for="newsletter-email">Correo electrónico</label>
+            <input
+              id="newsletter-email"
+              type="email"
+              placeholder="tu@email.com"
+              required
+              name="email"
+            />
+            <button type="submit">Suscribirme</button>
+          </form>
+          <small>Al suscribirte aceptas nuestras políticas de privacidad.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <!-- Social Links -->
+      <div class="social-links" aria-label="Redes sociales">
+        {social.main.map((item) => (
+          <a
+            href={item.link}
+            aria-label={item.name}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {item.name === 'Instagram' ? 'Ig' :
+             item.name === 'Pinterest' ? 'Pi' :
+             item.name === 'Facebook' ? 'Fb' :
+             item.name === 'YouTube' ? 'Yt' : item.name}
+          </a>
+        ))}
+      </div>
+
+      <!-- Copyright -->
+      <p class="copyright">© 2025 Desarrollado para Decomural por Pixory Marketing & Data Analytics.</p>
+
+      <!-- Payment Methods -->
+      <div class="payments">
+        <span>Visa</span>
+        <span>Mastercard</span>
+        <span>PayPal</span>
+        <span>Amex</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 4rem;
+    background: #f0efea;
+    color: #2b2b2b;
+    padding: 3rem clamp(1rem, 5vw, 3.5rem);
+  }
+
+  .footer-top {
+    border-bottom: 1px solid #d7d4cc;
+    padding-bottom: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+  }
+
+  .footer-column h3,
+  .footer-newsletter h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.85rem;
+    margin: 0 0 1rem;
+    font-weight: 600;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-column li {
+    margin: 0;
+  }
+
+  .footer-column a {
+    color: #6f6f6f;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-column a:hover {
+    color: #2b2b2b;
+  }
+
+  /* Newsletter Section */
+  .footer-newsletter .eyebrow {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    margin: 0 0 0.35rem;
+    color: #6f6f6f;
+  }
+
+  .footer-newsletter p {
+    margin: 0 0 0.75rem;
+    color: #6f6f6f;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d7d4cc;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    background: white;
+  }
+
+  .newsletter-form input:focus {
+    outline: none;
+    border-color: #252525;
+  }
+
+  .newsletter-form button {
+    padding: 0.75rem 1.5rem;
+    background: #252525;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .newsletter-form button:hover {
+    background: #2b2b2b;
+  }
+
+  .footer-newsletter small {
+    color: #6f6f6f;
+    font-size: 0.75rem;
+    display: block;
+  }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Social Links - Circular */
+  .social-links {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #d7d4cc;
+    color: #2b2b2b;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .social-links a:hover {
+    background: #252525;
+    border-color: #252525;
+    color: white;
+  }
+
+  /* Copyright */
+  .copyright {
+    margin: 0;
+    color: #6f6f6f;
+    font-size: 0.85rem;
+  }
+
+  /* Payment Methods */
+  .payments {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .payments span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: #6f6f6f;
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .footer-columns {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+    }
+
+    .newsletter-form button {
+      width: 100%;
+    }
+  }
+</style>

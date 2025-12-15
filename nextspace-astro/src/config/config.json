@@ -1,0 +1,50 @@
+{
+  "site": {
+    "title": "Decomural - Papeles Murales Chile",
+    "base_url": "https://decomural.netlify.app",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo-decomural.webp",
+    "logo_footer": "/images/logo-decomural.webp",
+    "logo_width": "180",
+    "logo_height": "32",
+    "logo_text": "Decomural"
+  },
+
+  "settings": {
+    "pagination": 6
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "address": "123 Main Street, New York, NY 10001",
+    "phone": "123-456-7890",
+    "email": "info@nextspace.com",
+    "footer_title": "Ready To Build Your Dream Project?",
+    "footer_content": "Develops conceptual design ideas, refines them into detailed plans."
+  },
+
+  "navigation_button": {
+    "enable": true,
+    "label": "Get This Template",
+    "link": "https://themefisher.com/products/nextspace-astro"
+  },
+
+  "footer_button": {
+    "enable": true,
+    "label": "Get Started",
+    "link": "/contact"
+  },
+
+  "google_tag_manager": {
+    "enable": false,
+    "gtm_id": "GTM-XXXXXX"
+  },
+
+  "metadata": {
+    "meta_author": "Decomural",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "La primera fábrica de papeles murales de Chile. Diseños exclusivos, personalizados, infantiles y vinílicos."
+  }
+}

@@ -1,0 +1,146 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  image: string;
+  linkLabel: string;
+  collectionSlug: string;
+}
+
+const { eyebrow, title, description, image, linkLabel, collectionSlug } = Astro.props;
+
+// Generate image path - all showcase images use the same placeholder for now
+const imagePath = `/images/wallpapers/storiesoflife/${image}`;
+---
+
+<article class="showcase-card">
+  <a href={`/catalogo?coleccion=${collectionSlug}`} class="block">
+    <div class="showcase-media">
+      <img
+        src={imagePath}
+        alt={title}
+        loading="lazy"
+      />
+    </div>
+  </a>
+
+  <div class="showcase-body">
+    {eyebrow && (
+      <p class="showcase-eyebrow">
+        {eyebrow}
+      </p>
+    )}
+    <h3 class="showcase-title">
+      {title}
+    </h3>
+    <p class="showcase-description">
+      {description}
+    </p>
+    <a
+      href={`/catalogo?coleccion=${collectionSlug}`}
+      class="text-link"
+    >
+      {linkLabel}
+    </a>
+  </div>
+</article>
+
+<style>
+  .showcase-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: transform 0.3s ease;
+  }
+
+  .showcase-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .showcase-media {
+    border-radius: 0.85rem;
+    overflow: hidden;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+    aspect-ratio: 1 / 1.05;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .showcase-card:hover .showcase-media {
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+  }
+
+  .showcase-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .showcase-card:hover .showcase-media img {
+    transform: scale(1.05);
+  }
+
+  .showcase-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .showcase-eyebrow {
+    font-family: var(--font-secondary), 'Playfair Display', 'Times New Roman', serif;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    text-transform: none;
+    margin: 0;
+    color: #6f6f6f;
+    
+  }
+
+  .showcase-title {
+    font-family: var(--font-secondary), 'Playfair Display', 'Times New Roman', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    margin: 0;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    
+    color: #2b2b2b;
+    transition: color 0.3s ease;
+  }
+
+  .showcase-card:hover .showcase-title {
+    color: var(--primary, #1e1e1e);
+  }
+
+  .showcase-description {
+    margin: 0;
+    line-height: 1.8;
+    color: #2b2b2b;
+  }
+
+  .text-link {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary, #1e1e1e);
+    transition: gap 0.3s ease;
+  }
+
+  .text-link:hover {
+    gap: 0.75rem;
+  }
+
+  .text-link::after {
+    content: '→';
+    font-size: 1.125rem;
+  }
+</style>

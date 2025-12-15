@@ -1,0 +1,86 @@
+---
+import BlogCard from "@/components/BlogCard.astro";
+import ImageMod from "@/components/ImageMod.astro";
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import dateFormat from "@/lib/utils/dateFormat";
+import similarItems from "@/lib/utils/similarItems";
+import { markdownify } from "@/lib/utils/textConverter";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getSinglePage("blog");
+
+  const paths = posts.map((post) => ({
+    params: {
+      single: post.id,
+    },
+    props: { post },
+  }));
+  return paths;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, meta_title, description, image, date } = post.data;
+
+const posts = await getSinglePage("blog");
+const similarPosts = similarItems(post, posts).slice(0, 3);
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <!-- Breadcrumbs -->
+  <div class="blog-breadcrumbs">
+    <a href="/">Home</a>
+    <span>–</span>
+    <a href="/blog">Blog</a>
+    <span>–</span>
+    <span>{title}</span>
+  </div>
+
+  <!-- Blog Post Header -->
+  <header class="blog-single-header">
+    {date && <span class="blog-date">Publicado el {dateFormat(date)}</span>}
+    <h1 set:html={markdownify(title)} />
+  </header>
+
+  <!-- Blog Post Content -->
+  <article class="blog-post-content">
+    {image && (
+      <div>
+        <ImageMod
+          src={image}
+          height={600}
+          width={1200}
+          alt={title}
+          class="w-full object-cover aspect-[2/1]"
+          format="webp"
+        />
+      </div>
+    )}
+
+    <div class="content">
+      <Content />
+    </div>
+  </article>
+
+  <!-- Related Posts -->
+  {similarPosts.length > 0 && (
+    <section class="related-posts">
+      <div class="related-posts-header">
+        <p class="eyebrow">Más contenido</p>
+        <h2>Artículos relacionados</h2>
+      </div>
+      <div class="related-posts-grid">
+        {similarPosts.map((post, i) => (
+          <BlogCard data={post} index={i} />
+        ))}
+      </div>
+    </section>
+  )}
+</Base>

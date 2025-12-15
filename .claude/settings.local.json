@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm install)",
+      "Bash(node excel-to-astro.js:*)",
+      "Bash(node -e:*)",
+      "Bash(node check-columns.js:*)",
+      "Bash(yarn check:*)",
+      "Bash(yarn install)",
+      "Bash(npx astro check)",
+      "Bash(node check-lineas.js:*)",
+      "Bash(node check-sku-lineas.js:*)",
+      "Bash(node check-hero-slides.js:*)",
+      "Bash(node find-slide-images.js:*)",
+      "Bash(yarn dev)",
+      "Bash(yarn add:*)",
+      "Bash(node check-collection-showcase.js:*)",
+      "Bash(ls:*)",
+      "Bash(xargs:*)",
+      "Bash(grep:*)",
+      "Bash(dir \"C:\\decomuralweb2\\nextspace-astro\\src\\layouts\")",
+      "Bash(dir \"C:\\decomuralweb2\\nextspace-astro\\src\\content\")",
+      "Bash(dir \"C:\\decomuralweb2\\nextspace-astro\\src\\content\\wallpapers\")",
+      "Bash(dir \"C:\\decomuralweb2\\nextspace-astro\\src\\content\\collections\")",
+      "Bash(dir \"C:\\decomuralweb2\\nextspace-astro\\src\\layouts\\helpers\")",
+      "Bash(dir \"C:\\decomuralweb2\\nextspace-astro\\src\\lib\")",
+      "Bash(dir \"C:\\decomuralweb2\\nextspace-astro\\src\\lib\\utils\")",
+      "Bash(yarn generate-content)",
+      "Bash(cat:*)"
+    ]
+  }
+}

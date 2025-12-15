@@ -1,0 +1,134 @@
+{
+  "main": [
+    {
+      "name": "Diseños",
+      "url": "/catalogo?linea=diseno",
+      "hasMegamenu": true,
+      "linea": "Diseños"
+    },
+    {
+      "name": "Personalizados",
+      "url": "/catalogo?linea=personalizados",
+      "hasMegamenu": true,
+      "linea": "Personalizados"
+    },
+    {
+      "name": "Infantiles",
+      "url": "/catalogo?linea=infantiles",
+      "hasMegamenu": true,
+      "linea": "Infantiles"
+    },
+    {
+      "name": "Vinílicos",
+      "url": "/catalogo?linea=vinilicos",
+      "hasMegamenu": true,
+      "linea": "Vinilicos"
+    },
+    {
+      "name": "Cortinas y Persianas",
+      "url": "https://www.example.com/cortinas",
+      "external": true
+    },
+    {
+      "name": "Blog",
+      "url": "/blog"
+    },
+    {
+      "name": "Puntos de Venta",
+      "url": "/puntos-de-venta"
+    }
+  ],
+  "megamenu": {
+    "colors": [
+      "Negro",
+      "Azul",
+      "Marrón",
+      "Verde",
+      "Gris",
+      "Neutro",
+      "Rosa",
+      "Púrpura",
+      "Rojo",
+      "Blanco",
+      "Amarillo"
+    ],
+    "patterns": [
+      "Abstracto",
+      "Floral",
+      "Animales",
+      "Texturas",
+      "Plano",
+      "Geométrico"
+    ],
+    "info": [
+      {
+        "name": "Guía paso a paso",
+        "url": "/guia"
+      },
+      {
+        "name": "FAQs",
+        "url": "/faqs"
+      }
+    ],
+    "highlight": {
+      "title": "Colección destacada",
+      "description": "La colección Drawn Into Nature nace de la observación atenta del mundo natural que se transforma en ilustraciones llenas de vida.",
+      "image": "/images/wallpapers/storiesoflife/369223_3-768x512.webp",
+      "cta": "Ver más",
+      "url": "/catalogo?coleccion=stories-of-life"
+    }
+  },
+  "footer": [
+    {
+      "title": "Atención",
+      "children": [
+        {
+          "name": "Envíos y devoluciones",
+          "url": "/envios"
+        },
+        {
+          "name": "Estado de mi pedido",
+          "url": "/pedidos"
+        },
+        {
+          "name": "Guía de instalación",
+          "url": "/instalacion"
+        }
+      ]
+    },
+    {
+      "title": "Empresa",
+      "children": [
+        {
+          "name": "Nuestra historia",
+          "url": "/about"
+        },
+        {
+          "name": "Sustentabilidad",
+          "url": "/sustentabilidad"
+        },
+        {
+          "name": "Prensa",
+          "url": "/prensa"
+        }
+      ]
+    },
+    {
+      "title": "Inspiración",
+      "children": [
+        {
+          "name": "Blog Deco",
+          "url": "/blog"
+        },
+        {
+          "name": "Catálogo digital",
+          "url": "/catalogo"
+        },
+        {
+          "name": "Colecciones 2025",
+          "url": "/"
+        }
+      ]
+    }
+  ]
+}

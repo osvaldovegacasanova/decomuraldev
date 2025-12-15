@@ -1,0 +1,650 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getCollection } from "astro:content";
+
+// Get all wallpapers and collections (only active collections)
+const allWallpapers = await getCollection("wallpapers");
+const allCollections = await getCollection("collections", ({ data }) => {
+  return data.active !== false;
+});
+
+// Get unique values for filters
+const uniqueColors = [...new Set(allWallpapers.map(w => w.data.color).filter(Boolean))].sort();
+const uniquePatterns = [...new Set(allWallpapers.map(w => w.data.patron).filter(Boolean))].sort();
+const collectionsForFilter = allCollections.map(c => ({
+  name: c.data.title,
+  slug: c.data.slug,
+  linea: c.data.linea
+}));
+
+// Pass wallpapers data to client
+const wallpapersData = allWallpapers.map(w => ({
+  codigo: w.data.codigo,
+  title: w.data.title,
+  coleccion: w.data.coleccion,
+  coleccion_slug: w.data.coleccion_slug,
+  linea: w.data.linea,
+  color: w.data.color,
+  patron: w.data.patron,
+  images: w.data.images,
+  image: w.data.image,
+  nueva: w.data.nueva,
+  disponible: w.data.disponible,
+}));
+---
+
+<Base title="Catálogo - Decomural" meta_title="Catálogo de Papeles Murales" description="Explora nuestra colección completa de papeles murales">
+  <main>
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+      <a href="/">Home</a>
+      <span>–</span>
+      <span>Catálogo</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Catálogo</p>
+        <h1 id="catalog-heading">Papeles Murales</h1>
+        <p class="lede">
+          Explora nuestra colección completa de murales a medida. Filtra por color, patrón o colección para encontrar el diseño perfecto para tu espacio.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filters & Results Header -->
+    <section class="results">
+      <div class="results-count">
+        <span id="results-count">Encontrados: {allWallpapers.length} resultados</span>
+      </div>
+      <div class="filters">
+        <!-- Color Filter -->
+        <div class="filter-item has-dropdown">
+          <button class="pill" id="color-filter-btn">
+            Color <span class="chevron">▼</span>
+          </button>
+          <ul class="filter-dropdown" id="color-filter">
+            <li data-value="">Todos</li>
+            {uniqueColors.map(color => (
+              <li data-value={color}>{color}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Pattern Filter -->
+        <div class="filter-item has-dropdown">
+          <button class="pill" id="pattern-filter-btn">
+            Patrón <span class="chevron">▼</span>
+          </button>
+          <ul class="filter-dropdown" id="pattern-filter">
+            <li data-value="">Todos</li>
+            {uniquePatterns.map(pattern => (
+              <li data-value={pattern}>{pattern}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Collection Filter -->
+        <div class="filter-item has-dropdown">
+          <button class="pill" id="collection-filter-btn">
+            Colección <span class="chevron">▼</span>
+          </button>
+          <ul class="filter-dropdown" id="collection-filter">
+            <li data-value="">Todas</li>
+            {collectionsForFilter.map(collection => (
+              <li data-value={collection.slug}>{collection.name}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Clear Filters Button -->
+        <button class="pill clear-filters" id="clear-filters" style="display: none;">
+          Limpiar filtros ✕
+        </button>
+      </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="product-grid" id="product-grid">
+      <!-- Products will be rendered by JavaScript -->
+    </section>
+
+    <!-- Pagination -->
+    <nav class="pagination" id="pagination" aria-label="Paginación">
+      <!-- Pagination will be rendered by JavaScript -->
+    </nav>
+  </main>
+</Base>
+
+<style>
+  .breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 1rem clamp(1rem, 5vw, 3.5rem);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+
+  .breadcrumbs a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--text);
+  }
+
+  .hero {
+    padding: 2rem clamp(1rem, 5vw, 3.5rem);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+
+  .hero .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: var(--font-secondary), 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin: 0 0 1.5rem;
+  }
+
+  .hero .lede {
+    line-height: 1.8;
+    color: #4d4d4d;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem clamp(1rem, 5vw, 3.5rem) 2rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .filter-item {
+    position: relative;
+  }
+
+  .pill {
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #2b2b2b;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .pill:hover {
+    border-color: #6b7280;
+  }
+
+  .pill-active {
+    background: #171717 !important;
+    color: white !important;
+    border-color: #171717 !important;
+    font-weight: 600;
+  }
+
+  .pill.clear-filters {
+    background: #374151;  /* gray-700 - consistent with style guide */
+    color: white;
+    border-color: #374151;
+  }
+
+  .pill.clear-filters:hover {
+    background: #1f2937;  /* gray-800 on hover */
+    border-color: #1f2937;
+  }
+
+  .chevron {
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  .filter-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    background: white;
+    border: 1px solid var(--stroke);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    list-style: none;
+    margin: 0;
+    min-width: 180px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 100;
+  }
+
+  .filter-dropdown.show {
+    display: block;
+  }
+
+  .filter-dropdown li {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background 0.2s ease;
+  }
+
+  .filter-dropdown li:hover {
+    background: #f5f5f2;
+  }
+
+  .filter-dropdown li.active {
+    background: #1e1e1e;
+    color: white;
+    font-weight: 600;
+  }
+
+  /* Active state takes precedence over hover */
+  .filter-dropdown li.active:hover {
+    background: #1e1e1e;
+    color: white;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 clamp(1rem, 5vw, 3.5rem) 4rem;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem clamp(1rem, 5vw, 3.5rem) 4rem;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .results {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script define:vars={{ wallpapersData, uniqueColors, uniquePatterns, collectionsForFilter }}>
+  // Catalog filtering and pagination logic
+  const ITEMS_PER_PAGE = 20;
+  let currentPage = 1;
+  let filteredWallpapers = [...wallpapersData];
+  let activeFilters = {
+    color: '',
+    pattern: '',
+    collection: ''
+  };
+
+  // Initialize from URL params
+  function initFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    activeFilters.color = params.get('color') || '';
+    activeFilters.pattern = params.get('patron') || '';
+    activeFilters.collection = params.get('coleccion') || '';
+    currentPage = parseInt(params.get('page') || '1');
+
+    console.log('Initialized from URL:', { activeFilters, params: window.location.search });
+  }
+
+  // Update catalog heading based on selected collection
+  function updateCatalogHeading() {
+    const heading = document.getElementById('catalog-heading');
+    if (!heading) return;
+
+    if (activeFilters.collection) {
+      const collection = collectionsForFilter.find(c => c.slug === activeFilters.collection);
+      heading.textContent = collection ? collection.name : 'Papeles Murales';
+    } else {
+      heading.textContent = 'Papeles Murales';
+    }
+  }
+
+  // Update filter pills to show active state
+  function updateFilterPills() {
+    // Update color pill
+    const colorBtn = document.getElementById('color-filter-btn');
+    if (colorBtn) {
+      if (activeFilters.color) {
+        colorBtn.classList.add('pill-active');
+        colorBtn.innerHTML = `${activeFilters.color} <span class="chevron">▼</span>`;
+      } else {
+        colorBtn.classList.remove('pill-active');
+        colorBtn.innerHTML = `Color <span class="chevron">▼</span>`;
+      }
+    }
+
+    // Update pattern pill
+    const patternBtn = document.getElementById('pattern-filter-btn');
+    if (patternBtn) {
+      if (activeFilters.pattern) {
+        patternBtn.classList.add('pill-active');
+        patternBtn.innerHTML = `${activeFilters.pattern} <span class="chevron">▼</span>`;
+      } else {
+        patternBtn.classList.remove('pill-active');
+        patternBtn.innerHTML = `Patrón <span class="chevron">▼</span>`;
+      }
+    }
+
+    // Update collection pill
+    const collectionBtn = document.getElementById('collection-filter-btn');
+    if (collectionBtn) {
+      if (activeFilters.collection) {
+        const collection = collectionsForFilter.find(c => c.slug === activeFilters.collection);
+        collectionBtn.classList.add('pill-active');
+        collectionBtn.innerHTML = `${collection?.name || 'Colección'} <span class="chevron">▼</span>`;
+      } else {
+        collectionBtn.classList.remove('pill-active');
+        collectionBtn.innerHTML = `Colección <span class="chevron">▼</span>`;
+      }
+    }
+  }
+
+  // Update dropdown items to mark active selections
+  function updateDropdownItems() {
+    // Update color dropdown items
+    const colorDropdown = document.getElementById('color-filter');
+    if (colorDropdown) {
+      colorDropdown.querySelectorAll('li').forEach(li => {
+        const value = li.dataset.value;
+        if (value === activeFilters.color || (!value && !activeFilters.color)) {
+          li.classList.add('active');
+        } else {
+          li.classList.remove('active');
+        }
+      });
+    }
+
+    // Update pattern dropdown items
+    const patternDropdown = document.getElementById('pattern-filter');
+    if (patternDropdown) {
+      patternDropdown.querySelectorAll('li').forEach(li => {
+        const value = li.dataset.value;
+        if (value === activeFilters.pattern || (!value && !activeFilters.pattern)) {
+          li.classList.add('active');
+        } else {
+          li.classList.remove('active');
+        }
+      });
+    }
+
+    // Update collection dropdown items
+    const collectionDropdown = document.getElementById('collection-filter');
+    if (collectionDropdown) {
+      collectionDropdown.querySelectorAll('li').forEach(li => {
+        const value = li.dataset.value;
+        if (value === activeFilters.collection || (!value && !activeFilters.collection)) {
+          li.classList.add('active');
+        } else {
+          li.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  // Apply filters
+  function applyFilters() {
+    filteredWallpapers = wallpapersData.filter(w => {
+      if (activeFilters.color && w.color !== activeFilters.color) return false;
+      if (activeFilters.pattern && w.patron !== activeFilters.pattern) return false;
+      if (activeFilters.collection && w.coleccion_slug !== activeFilters.collection) return false;
+      return w.disponible;
+    });
+
+    console.log('Applied filters:', {
+      activeFilters,
+      totalWallpapers: wallpapersData.length,
+      filteredCount: filteredWallpapers.length,
+      sampleWallpapers: wallpapersData.slice(0, 3).map(w => ({ codigo: w.codigo, coleccion_slug: w.coleccion_slug }))
+    });
+
+    currentPage = 1; // Reset to first page
+    updateCatalogHeading();
+    updateFilterPills();
+    updateDropdownItems();
+    updateURL();
+    renderProducts();
+    renderPagination();
+    updateResultsCount();
+    updateClearButton();
+  }
+
+  // Update URL without reload
+  function updateURL() {
+    const params = new URLSearchParams();
+    if (activeFilters.color) params.set('color', activeFilters.color);
+    if (activeFilters.pattern) params.set('patron', activeFilters.pattern);
+    if (activeFilters.collection) params.set('coleccion', activeFilters.collection);
+    if (currentPage > 1) params.set('page', currentPage);
+    const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    window.history.pushState({}, '', newURL);
+  }
+
+  // Render products
+  function renderProducts() {
+    const grid = document.getElementById('product-grid');
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    const pageProducts = filteredWallpapers.slice(start, end);
+
+    if (pageProducts.length === 0) {
+      grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--muted);">No se encontraron productos</p>';
+      return;
+    }
+
+    grid.innerHTML = pageProducts.map(product => `
+      <article class="product-card">
+        <div class="card-media">
+          <img
+            src="${product.image || product.images.sample || '/images/placeholder.jpg'}"
+            alt="${product.title}"
+            data-sample="${product.images.sample || ''}"
+            data-ambiente="${product.images.ambiente && product.images.ambiente[0] ? product.images.ambiente[0] : ''}"
+            loading="lazy"
+          />
+          ${product.nueva ? '<span class="badge badge-new">Nuevo</span>' : ''}
+        </div>
+        <div class="card-body">
+          <p class="card-collection">${product.coleccion}</p>
+          <h3 class="card-title">SKU ${product.codigo}</h3>
+          <p class="card-meta">${product.color}${product.patron ? ' • ' + product.patron : ''}</p>
+        </div>
+        <button class="ghost" onclick="window.location.href='/producto/${product.codigo}'">Ver detalles</button>
+      </article>
+    `).join('');
+
+    // Add hover effect for image switching
+    grid.querySelectorAll('.product-card').forEach(card => {
+      const img = card.querySelector('.card-media img');
+      const sample = img.dataset.sample;
+      const ambiente = img.dataset.ambiente;
+
+      if (sample && ambiente) {
+        // Default: show ambiente
+        img.src = ambiente;
+
+        // Hover: show sample
+        card.addEventListener('mouseenter', () => {
+          img.src = sample;
+        });
+        card.addEventListener('mouseleave', () => {
+          img.src = ambiente;
+        });
+      }
+    });
+  }
+
+  // Render pagination
+  function renderPagination() {
+    const totalPages = Math.ceil(filteredWallpapers.length / ITEMS_PER_PAGE);
+    const pagination = document.getElementById('pagination');
+
+    if (totalPages <= 1) {
+      pagination.style.display = 'none';
+      return;
+    }
+
+    pagination.style.display = 'flex';
+
+    let pages = '';
+    for (let i = 1; i <= totalPages; i++) {
+      if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+        pages += `<a href="#" class="page-link ${i === currentPage ? 'current' : ''}" data-page="${i}">${i}</a>`;
+      } else if (i === currentPage - 3 || i === currentPage + 3) {
+        pages += `<span class="page-ellipsis">...</span>`;
+      }
+    }
+
+    pagination.innerHTML = `
+      <button class="page-arrow" ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}">
+        <span>←</span>
+      </button>
+      <div class="page-list">${pages}</div>
+      <button class="page-arrow" ${currentPage === totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">
+        <span>→</span>
+      </button>
+    `;
+
+    // Add click handlers
+    pagination.querySelectorAll('[data-page]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = parseInt(el.dataset.page);
+        if (page >= 1 && page <= totalPages) {
+          currentPage = page;
+          updateURL();
+          renderProducts();
+          renderPagination();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  // Update results count
+  function updateResultsCount() {
+    document.getElementById('results-count').textContent =
+      `Encontrados: ${filteredWallpapers.length} resultado${filteredWallpapers.length !== 1 ? 's' : ''}`;
+  }
+
+  // Update clear button visibility
+  function updateClearButton() {
+    const clearBtn = document.getElementById('clear-filters');
+    const hasFilters = activeFilters.color || activeFilters.pattern || activeFilters.collection;
+    clearBtn.style.display = hasFilters ? 'block' : 'none';
+  }
+
+  // Main initialization function
+  function initCatalog() {
+    initFromURL();
+    applyFilters();
+    initFilterDropdowns();
+    initClearButton();
+  }
+
+  // Initialize filter dropdowns
+  function initFilterDropdowns() {
+    document.querySelectorAll('.filter-item').forEach(item => {
+      const btn = item.querySelector('.pill');
+      const dropdown = item.querySelector('.filter-dropdown');
+
+      if (btn && dropdown) {
+        // Remove old listeners by cloning
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+
+        newBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          // Close other dropdowns
+          document.querySelectorAll('.filter-dropdown').forEach(d => {
+            if (d !== dropdown) d.classList.remove('show');
+          });
+          dropdown.classList.toggle('show');
+        });
+
+        dropdown.querySelectorAll('li').forEach(li => {
+          li.addEventListener('click', () => {
+            const value = li.dataset.value;
+            const filterType = dropdown.id.replace('-filter', '').replace('pattern', 'pattern').replace('collection', 'collection');
+
+            if (filterType === 'color') activeFilters.color = value;
+            else if (filterType === 'pattern') activeFilters.pattern = value;
+            else if (filterType === 'collection') activeFilters.collection = value;
+
+            applyFilters();
+            dropdown.classList.remove('show');
+          });
+        });
+      }
+    });
+  }
+
+  // Initialize clear button
+  function initClearButton() {
+    const clearBtn = document.getElementById('clear-filters');
+    if (clearBtn) {
+      // Remove old listener by cloning
+      const newClearBtn = clearBtn.cloneNode(true);
+      clearBtn.parentNode.replaceChild(newClearBtn, clearBtn);
+
+      newClearBtn.addEventListener('click', () => {
+        activeFilters = { color: '', pattern: '', collection: '' };
+        applyFilters();
+      });
+    }
+
+    // Close dropdowns on outside click
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('show'));
+    });
+  }
+
+  // Run on initial load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCatalog);
+  } else {
+    initCatalog();
+  }
+
+  // Re-run after Astro page transitions
+  document.addEventListener('astro:page-load', initCatalog);
+</script>

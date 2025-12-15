@@ -1,0 +1,336 @@
+---
+import { getCollection } from 'astro:content';
+import Logo from '@/components/Logo.astro';
+import menu from '@/config/menu.json';
+
+const { main, megamenu } = menu;
+
+// Import navmenu data for line-specific highlights (with fallback)
+let navmenuData: Record<string, any> = {};
+try {
+  navmenuData = await import('@/data/navmenu.json').then(m => m.default);
+} catch {
+  // navmenu.json doesn't exist yet - fallback to menu.json
+  console.warn('navmenu.json not found - using menu.json highlight for all lines');
+}
+
+// Get collections grouped by linea (only active collections)
+const allCollections = await getCollection('collections', ({ data }) => {
+  return data.active !== false;
+});
+const collectionsByLinea = {
+  'Diseños': allCollections.filter(c => c.data.linea === 'Diseño'),
+  'Personalizados': allCollections.filter(c => c.data.linea === 'Personalizados'),
+  'Infantiles': allCollections.filter(c => c.data.linea === 'Infantiles'),
+  'Vinilicos': allCollections.filter(c => c.data.linea === 'Vinilicos'),
+};
+
+// Map Spanish color names to CSS classes
+const getColorClass = (colorName: string): string => {
+  const colorMap: Record<string, string> = {
+    'Negro': 'black',
+    'Azul': 'blue',
+    'Marrón': 'brown',
+    'Verde': 'green',
+    'Gris': 'grey',
+    'Neutro': 'neutral',
+    'Rosa': 'pink',
+    'Púrpura': 'purple',
+    'Rojo': 'red',
+    'Blanco': 'white',
+    'Amarillo': 'yellow',
+  };
+  return colorMap[colorName] || 'grey';
+};
+---
+
+<header class="decomural-header sticky top-0 z-50 shadow-sm" style="background-color: #252525; color: #fff;">
+  <div class="container">
+    <div class="header-wrapper flex items-center justify-between py-4 lg:py-5">
+      <!-- Logo -->
+      <div class="logo flex-shrink-0">
+        <Logo />
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button
+        class="mobile-menu-toggle lg:hidden hover:text-primary" style="color: rgba(255, 255, 255, 0.9);"
+        aria-label="Toggle menu"
+        id="mobile-menu-toggle"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <!-- Navigation -->
+      <nav class="primary-nav hidden lg:flex items-center gap-6">
+        {main.map((item) => (
+          <div class="nav-item relative group">
+            {item.hasMegamenu ? (
+              <!-- Menu item with megamenu -->
+              <button
+                class="nav-link uppercase font-medium" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; letter-spacing: 0.08em; hover:text-primary transition-colors py-2"
+                data-linea={item.linea}
+              >
+                {item.name}
+                <svg class="inline-block w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                </svg>
+              </button>
+
+              <!-- Mega Menu Dropdown -->
+              <div class="mega-menu absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:block w-[90vw] max-w-[1200px] min-w-[900px]">
+                <!-- Invisible hover bridge -->
+                <div class="h-2"></div>
+                <div class="bg-white border border-gray-200 rounded-lg shadow-xl p-6">
+                  <div class="mega-grid grid grid-cols-[1.5fr_1fr_1fr_1fr_3.5fr] gap-6">
+                  <!-- Collections Column -->
+                  <div class="mega-col">
+                    <h3 class="mega-heading uppercase text-gray-500 mb-3" style="font-size: 0.7rem; letter-spacing: 0.12em;">Colección</h3>
+                    <ul class="mega-list space-y-2.5">
+                      {collectionsByLinea[item.linea]?.map((collection) => (
+                        <li>
+                          <a
+                            href={`/catalogo?coleccion=${collection.data.slug}`}
+                            class="uppercase text-gray-700 hover:text-primary transition-colors leading-relaxed" style="font-size: 0.8rem; letter-spacing: 0.12em;"
+                          >
+                            {collection.data.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Color Column -->
+                  <div class="mega-col">
+                    <h3 class="mega-heading uppercase text-gray-500 mb-3" style="font-size: 0.7rem; letter-spacing: 0.12em;">Color</h3>
+                    <ul class="mega-list space-y-2.5">
+                      {megamenu.colors.slice(0, 6).map((color) => (
+                        <li>
+                          <a
+                            href={`/catalogo?color=${color}`}
+                            class="flex items-center gap-2 uppercase text-gray-700 hover:text-primary transition-colors leading-relaxed" style="font-size: 0.75rem; letter-spacing: 0.12em;"
+                          >
+                            <span class={`color-dot ${getColorClass(color)}`}></span>
+                            {color}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Pattern Column -->
+                  <div class="mega-col">
+                    <h3 class="mega-heading uppercase text-gray-500 mb-3" style="font-size: 0.7rem; letter-spacing: 0.12em;">Patrón</h3>
+                    <ul class="mega-list space-y-2.5">
+                      {megamenu.patterns.map((pattern) => (
+                        <li>
+                          <a
+                            href={`/catalogo?patron=${pattern}`}
+                            class="uppercase text-gray-700 hover:text-primary transition-colors leading-relaxed" style="font-size: 0.75rem; letter-spacing: 0.12em;"
+                          >
+                            {pattern}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Info Column -->
+                  <div class="mega-col">
+                    <h3 class="mega-heading uppercase text-gray-500 mb-3" style="font-size: 0.7rem; letter-spacing: 0.12em;">Información</h3>
+                    <ul class="mega-list space-y-2.5">
+                      {megamenu.info.map((link) => (
+                        <li>
+                          <a
+                            href={link.url}
+                            class="uppercase text-gray-700 hover:text-primary transition-colors" style="font-size: 0.75rem; letter-spacing: 0.12em;"
+                          >
+                            {link.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Image Highlight Column - Dynamic per Line -->
+                  <div class="mega-col">
+                    {(() => {
+                      // Use line-specific highlight if available, fallback to menu.json
+                      const highlight = navmenuData[item.linea]?.highlight || megamenu.highlight;
+                      return (
+                        <div class="highlight-card bg-gray-50 rounded-lg p-4 overflow-hidden group/card">
+                          <div class="overflow-hidden rounded mb-3">
+                            <img
+                              src={highlight.image}
+                              alt={highlight.heading || highlight.title}
+                              class="w-full h-56 aspect-[4/3] object-cover transition-transform duration-300 group-hover/card:scale-105"
+                            />
+                          </div>
+                          <h4 class="text-base font-semibold mb-2">{highlight.heading || highlight.title}</h4>
+                          <p class="text-sm text-gray-600 mb-3 leading-relaxed">{highlight.text || highlight.description}</p>
+                          <a
+                            href={highlight.url}
+                            class="text-sm uppercase tracking-wide text-primary hover:underline font-semibold inline-block"
+                          >
+                            {highlight.cta} →
+                          </a>
+                        </div>
+                      );
+                    })()}
+                  </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <!-- Regular menu item -->
+              <a
+                href={item.url}
+                class="nav-link uppercase font-medium" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; letter-spacing: 0.08em; hover:text-primary transition-colors py-2"
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+              >
+                {item.name}
+              </a>
+            )}
+          </div>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav lg:hidden hidden" id="mobile-nav">
+      <ul class="py-4 space-y-2">
+        {main.map((item) => (
+          <li>
+            <a
+              href={item.url}
+              class="block py-2 text-sm uppercase tracking-wide hover:text-primary transition-colors" style="color: rgba(255, 255, 255, 0.9);"
+              target={item.external ? '_blank' : undefined}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .mega-menu {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .mega-menu.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .mega-menu:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Hide mega menu on mobile */
+  @media (max-width: 1023px) {
+    .mega-menu {
+      display: none !important;
+    }
+  }
+
+  /* Color dot styles */
+  .color-dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .color-dot.black { background-color: #000000; }
+  .color-dot.blue { background-color: #4A90E2; }
+  .color-dot.brown { background-color: #8B4513; }
+  .color-dot.green { background-color: #4CAF50; }
+  .color-dot.grey { background-color: #9E9E9E; }
+  .color-dot.neutral { background-color: #E0DCD3; }
+  .color-dot.pink { background-color: #FF69B4; }
+  .color-dot.purple { background-color: #9C27B0; }
+  .color-dot.red { background-color: #F44336; }
+  .color-dot.white { background-color: #FFFFFF; border-color: #ccc; }
+  .color-dot.yellow { background-color: #FFEB3B; }
+</style>
+
+<script is:inline>
+  // Initialize mega menu functionality
+  function initMegaMenu() {
+    // Mobile menu toggle
+    const toggleButton = document.getElementById('mobile-menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    if (toggleButton && mobileNav) {
+      // Remove old listener if exists
+      const newToggleButton = toggleButton.cloneNode(true);
+      toggleButton.parentNode.replaceChild(newToggleButton, toggleButton);
+
+      newToggleButton.addEventListener('click', () => {
+        mobileNav.classList.toggle('hidden');
+      });
+    }
+
+    // Mega menu hover stability with delay
+    let megaMenuTimeout = null;
+    const navItems = document.querySelectorAll('.nav-item.group');
+
+    // Helper function to close all mega menus
+    function closeAllMegaMenus() {
+      navItems.forEach((item) => {
+        const menu = item.querySelector('.mega-menu');
+        if (menu) {
+          menu.classList.add('hidden');
+        }
+      });
+    }
+
+    navItems.forEach((navItem) => {
+      const megaMenu = navItem.querySelector('.mega-menu');
+
+      if (megaMenu && !navItem.dataset.megaMenuInit) {
+        // Mark as initialized to prevent duplicate listeners
+        navItem.dataset.megaMenuInit = 'true';
+
+        // Show menu immediately on hover and close others
+        navItem.addEventListener('mouseenter', () => {
+          if (megaMenuTimeout) {
+            clearTimeout(megaMenuTimeout);
+            megaMenuTimeout = null;
+          }
+
+          // Close all other menus first
+          closeAllMegaMenus();
+
+          // Open this menu
+          megaMenu.classList.remove('hidden');
+        });
+
+        // Delay hiding menu when mouse leaves
+        navItem.addEventListener('mouseleave', () => {
+          megaMenuTimeout = setTimeout(() => {
+            megaMenu.classList.add('hidden');
+          }, 150); // 150ms delay before closing
+        });
+      }
+    });
+  }
+
+  // Run on initial page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMegaMenu);
+  } else {
+    initMegaMenu();
+  }
+
+  // Re-run after page transitions (for Astro view transitions)
+  document.addEventListener('astro:page-load', initMegaMenu);
+</script>

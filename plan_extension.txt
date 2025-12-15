@@ -1,0 +1,30 @@
+
+[Extension]
+
+
+
+# general
+* Colecciones activas:
+El sitio sólo debe mostrar las colecciones que tienen en la hoja Excel colección la columna Active = 1
+* Mostrar en filtros solo colecciones activas (hoja Excel colección la columna Active = 1)
+
+
+# Mega Menú
+
+* Contenido de mega menú: los textos e imagen en la zona derecha del mega menú deben ser obtenidos desde el archivo Excel , hoja navmenu, columnas:
+mega-menú: 1 si el mega menú esta activo para esa opción del nav menu
+mega-highlight-image-folder : folder en donde se encuentra la imagen destacada
+mega-highlight-image : archivo para la imagen descatada
+mega-highlight-heading : heading
+mega-highlight-text : text	
+mega-highlight-cta : cta text
+* filtro de color del mega menú  no esta funcionando
+
+
+
+# catalogo
+
+* H1 de Hero de la página catálogo debe mostrar nombre de colección.
+* filtro de catálogo debe destacar la opción escogida.
+
+

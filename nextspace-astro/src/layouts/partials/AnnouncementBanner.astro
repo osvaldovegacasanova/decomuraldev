@@ -1,0 +1,45 @@
+---
+// Read announcement text from generated JSON
+import siteData from '@/data/site.json';
+
+const announcementText = siteData?.announcementLabel || 'Disfruta de descuentos exclusivos de hasta el 30% en papeles murales seleccionados.';
+---
+
+<div class="announcement-banner">
+  <div class="announcement-container">
+    <p class="announcement-text">{announcementText}</p>
+  </div>
+</div>
+
+<style>
+  .announcement-banner {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    width: 100%;
+    position: relative;
+    z-index: 40;
+  }
+
+  .announcement-container {
+    padding: 0.65rem 1rem;
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .announcement-text {
+    font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .announcement-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+  }
+</style>

@@ -1,0 +1,113 @@
+---
+// Read collection showcase data from generated JSON
+import showcaseData from '@/data/collectionShowcase.json';
+import CollectionCard from '@/components/CollectionCard.astro';
+import slugify from 'slugify';
+
+// Group by CollectionShowcase field (linea identifier)
+const sections = {
+  disenos: {
+    eyebrow: 'Linea',
+    title: 'Diseños',
+    cards: []
+  },
+  personalizados: {
+    eyebrow: 'Linea',
+    title: 'Personalizados',
+    cards: []
+  },
+  infantiles: {
+    eyebrow: 'Linea',
+    title: 'Infantiles',
+    cards: []
+  },
+  vinilicos: {
+    eyebrow: 'Linea',
+    title: 'Vinílicos',
+    cards: []
+  }
+};
+
+// Populate sections with cards
+showcaseData.forEach(item => {
+  const sectionKey = item.CollectionShowcase;
+  if (sections[sectionKey]) {
+    sections[sectionKey].cards.push({
+      eyebrow: item.card_eyebrow,
+      title: item.card_title,
+      description: item.card_description,
+      image: item.card_image,
+      linkLabel: item.card_linklabel,
+      collectionSlug: slugify(item.card_title, { lower: true, strict: true, locale: 'es' })
+    });
+  }
+});
+
+// Convert to array and sort by original order
+const sectionOrder = ['disenos', 'personalizados', 'infantiles', 'vinilicos'];
+const orderedSections = sectionOrder.map(key => ({
+  key,
+  ...sections[key]
+}));
+---
+
+{orderedSections.map((section) => (
+  <section class="collection-showcase-section section">
+    <div class="container">
+      {/* Section Header */}
+      <div class="section-header text-center mb-12" data-aos="fade-up">
+        {section.eyebrow && (
+          <p class="eyebrow text-sm uppercase tracking-widest text-gray-500 mb-4">
+            {section.eyebrow}
+          </p>
+        )}
+        <h2 class="font-bold mb-6 uppercase" style="font-family: var(--font-secondary), 'Playfair Display', serif; letter-spacing: 0.08em; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #252525;">
+          {section.title}
+        </h2>
+      </div>
+
+      {/* Cards Grid */}
+      <div
+        class="collection-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        {section.cards.map((card) => (
+          <CollectionCard
+            eyebrow={card.eyebrow}
+            title={card.title}
+            description={card.description}
+            image={card.image}
+            linkLabel={card.linkLabel}
+            collectionSlug={card.collectionSlug}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+))}
+
+<style>
+  .collection-showcase-section {
+    padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    .collection-showcase-section {
+      padding: 6rem 0;
+    }
+  }
+
+  .section-header {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .collection-cards-grid {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

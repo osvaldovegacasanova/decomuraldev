@@ -1,0 +1,482 @@
+---
+import Base from "@/layouts/Base.astro";
+---
+
+<Base title="Guía de Estilo - Decomural" meta_title="Guía de Estilo" description="Paleta de colores y tipografía del sitio Decomural">
+  <main class="style-guide">
+    <div class="container py-12">
+      <header class="guide-header text-center mb-16">
+        <h1 class="text-5xl font-bold uppercase mb-4" style="font-family: var(--font-primary), 'Poppins', sans-serif; letter-spacing: 0.15em;">Guía de Estilo</h1>
+        <p class="text-xl text-gray-600">Paleta de colores, tipografía y componentes del sitio Decomural</p>
+      </header>
+
+      <!-- Color Palette Section -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold uppercase mb-8" style="font-family: var(--font-primary), 'Poppins', sans-serif; letter-spacing: 0.1em;">Paleta de Colores</h2>
+
+        <!-- Primary Colors -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-6 uppercase tracking-wide text-gray-700">Colores Principales</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            <div class="color-swatch">
+              <div class="swatch-box" style="background: #252525;"></div>
+              <div class="swatch-info">
+                <p class="swatch-name">Nero</p>
+                <p class="swatch-hex">#252525</p>
+                <p class="swatch-var">--nero</p>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch-box" style="background: #1e1e1e;"></div>
+              <div class="swatch-info">
+                <p class="swatch-name">Charcoal Soft</p>
+                <p class="swatch-hex">#1e1e1e</p>
+                <p class="swatch-var">--charcoal-soft</p>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch-box" style="background: #c7a589;"></div>
+              <div class="swatch-info">
+                <p class="swatch-name">Accent</p>
+                <p class="swatch-hex">#c7a589</p>
+                <p class="swatch-var">--accent</p>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch-box" style="background: #f5f5f2; border: 1px solid #e0e0e0;"></div>
+              <div class="swatch-info">
+                <p class="swatch-name">Bone</p>
+                <p class="swatch-hex">#f5f5f2</p>
+                <p class="swatch-var">--bone</p>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch-box" style="background: #e6e6e4;"></div>
+              <div class="swatch-info">
+                <p class="swatch-name">Stroke</p>
+                <p class="swatch-hex">#e6e6e4</p>
+                <p class="swatch-var">--stroke</p>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch-box" style="background: #2b2b2b;"></div>
+              <div class="swatch-info">
+                <p class="swatch-name">Text</p>
+                <p class="swatch-hex">#2b2b2b</p>
+                <p class="swatch-var">--text</p>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="swatch-box" style="background: #6f6f6f;"></div>
+              <div class="swatch-info">
+                <p class="swatch-name">Muted</p>
+                <p class="swatch-hex">#6f6f6f</p>
+                <p class="swatch-var">--muted</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resolved Color Issues -->
+        <div class="mb-12 p-6 bg-green-50 border-2 border-green-300 rounded-lg">
+          <h3 class="text-xl font-semibold mb-4 uppercase tracking-wide text-green-800">✅ Cambios Recientes de Color</h3>
+          <p class="text-sm text-green-700 mb-6">Colores que fueron reemplazados para mantener consistencia con la guía de estilo.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded border-2 border-red-200">
+              <div class="text-center">
+                <div class="swatch-box mx-auto" style="background: #004643; width: 60px; height: 60px;"></div>
+                <p class="font-semibold text-sm mt-2 text-red-700">❌ Removido</p>
+                <p class="text-sm mb-1">Dark Teal</p>
+                <p class="text-xs font-mono">#004643</p>
+              </div>
+            </div>
+            <div class="bg-white p-4 rounded border-2 border-green-400">
+              <div class="text-center">
+                <div class="swatch-box mx-auto" style="background: #1e1e1e; width: 60px; height: 60px;"></div>
+                <p class="font-semibold text-sm mt-2 text-green-700">✅ Nuevo</p>
+                <p class="text-sm mb-1">Charcoal Soft</p>
+                <p class="text-xs font-mono">#1e1e1e</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 text-xs text-gray-600">
+            <p class="mb-2"><strong>Archivos actualizados:</strong></p>
+            <ul class="space-y-1 ml-4">
+              <li>• <code>theme.json</code> - Color primario actualizado</li>
+              <li>• <code>CollectionCard.astro</code> - Hover y CTA</li>
+              <li>• <code>catalogo.astro</code> - Filtros activos</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Product Colors -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-6 uppercase tracking-wide text-gray-700">Colores de Productos</h3>
+          <div class="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-12 gap-4">
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #111;"></div>
+              <p class="swatch-name-mini">Negro</p>
+              <p class="swatch-hex-mini">#111</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #3366cc;"></div>
+              <p class="swatch-name-mini">Azul</p>
+              <p class="swatch-hex-mini">#3366cc</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #8c5523;"></div>
+              <p class="swatch-name-mini">Marrón</p>
+              <p class="swatch-hex-mini">#8c5523</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #3c8c5a;"></div>
+              <p class="swatch-name-mini">Verde</p>
+              <p class="swatch-hex-mini">#3c8c5a</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #a9a9a9;"></div>
+              <p class="swatch-name-mini">Gris</p>
+              <p class="swatch-hex-mini">#a9a9a9</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #d5c7b2;"></div>
+              <p class="swatch-name-mini">Neutro</p>
+              <p class="swatch-hex-mini">#d5c7b2</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #d7c2a1;"></div>
+              <p class="swatch-name-mini">Beige</p>
+              <p class="swatch-hex-mini">#d7c2a1</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #f6b1c3;"></div>
+              <p class="swatch-name-mini">Rosa</p>
+              <p class="swatch-hex-mini">#f6b1c3</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #8c4bc9;"></div>
+              <p class="swatch-name-mini">Púrpura</p>
+              <p class="swatch-hex-mini">#8c4bc9</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #d7263d;"></div>
+              <p class="swatch-name-mini">Rojo</p>
+              <p class="swatch-hex-mini">#d7263d</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #f2f2f2; border: 1px solid #ddd;"></div>
+              <p class="swatch-name-mini">Blanco</p>
+              <p class="swatch-hex-mini">#f2f2f2</p>
+            </div>
+            <div class="color-swatch-mini">
+              <div class="swatch-box-mini" style="background: #f5c542;"></div>
+              <p class="swatch-name-mini">Amarillo</p>
+              <p class="swatch-hex-mini">#f5c542</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography Section -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold uppercase mb-8" style="font-family: var(--font-primary), 'Poppins', sans-serif; letter-spacing: 0.1em;">Tipografía</h2>
+
+        <!-- Font Families -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-6 uppercase tracking-wide text-gray-700">Familias de Fuentes</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="font-card p-6 border border-gray-200 rounded-lg">
+              <p class="text-sm uppercase tracking-widest text-gray-500 mb-2">Primaria</p>
+              <p class="text-4xl mb-3" style="font-family: var(--font-primary), 'Poppins', sans-serif;">Poppins</p>
+              <p class="text-sm text-gray-600 mb-4">Sans-serif • Moderna y limpia</p>
+              <div class="space-y-2">
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 400;">Regular 400 - Texto del cuerpo</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 500;">Medium 500 - Subtítulos</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 600;">Semibold 600 - Títulos</p>
+              </div>
+            </div>
+            <div class="font-card p-6 border border-gray-200 rounded-lg">
+              <p class="text-sm uppercase tracking-widest text-gray-500 mb-2">Secundaria</p>
+              <p class="text-4xl mb-3" style="font-family: var(--font-secondary), 'Playfair Display', serif;">Playfair Display</p>
+              <p class="text-sm text-gray-600 mb-4">Serif • Elegante y sofisticada</p>
+              <div class="space-y-2">
+                <p style="font-family: 'Playfair Display', serif; font-weight: 400;">Regular 400 - Acentos</p>
+                <p style="font-family: 'Playfair Display', serif; font-weight: 600;">Semibold 600 - Títulos destacados</p>
+                <p style="font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;">Italic 400 - Énfasis</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Font Sizes -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-6 uppercase tracking-wide text-gray-700">Escala de Tamaños</h3>
+          <div class="space-y-6">
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">0.65rem</span>
+              <p class="text-xs uppercase tracking-widest" style="font-size: 0.65rem;">Pequeño • Etiquetas (10.4px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">0.7rem</span>
+              <p class="uppercase tracking-widest" style="font-size: 0.7rem;">Muy pequeño • Headings (11.2px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">0.72rem</span>
+              <p class="uppercase tracking-wide" style="font-size: 0.72rem;">Links • Mega Menu (11.5px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">0.75rem</span>
+              <p class="uppercase tracking-widest" style="font-size: 0.75rem;">Botones • CTAs (12px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">0.8rem</span>
+              <p style="font-size: 0.8rem;">Texto secundario (12.8px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">0.85rem</span>
+              <p style="font-size: 0.85rem;">Texto pequeño (13.6px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">0.9rem</span>
+              <p class="uppercase" style="font-size: 0.9rem;">Navegación (14.4px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">1rem</span>
+              <p style="font-size: 1rem;">Base • Texto del cuerpo (16px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">1.125rem</span>
+              <p style="font-size: 1.125rem;">Texto grande (18px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">1.25rem</span>
+              <p style="font-size: 1.25rem;">Subtítulos (20px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">2rem</span>
+              <p class="font-bold uppercase" style="font-size: 2rem; letter-spacing: 0.1em;">Títulos H2 (32px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">3rem</span>
+              <p class="font-bold uppercase" style="font-size: 3rem; letter-spacing: 0.15em;">Títulos H1 (48px)</p>
+            </div>
+            <div class="type-sample flex items-baseline gap-4 border-b pb-4">
+              <span class="text-sm text-gray-500 w-24">clamp</span>
+              <p class="font-bold uppercase" style="font-size: clamp(2rem, 5vw, 3rem); letter-spacing: 0.2em;">Hero • Responsive (32-48px)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Letter Spacing -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-6 uppercase tracking-wide text-gray-700">Espaciado de Letras</h3>
+          <div class="space-y-4">
+            <div class="flex items-baseline gap-4 border-b pb-3">
+              <span class="text-sm text-gray-500 w-32">0.08em</span>
+              <p class="uppercase" style="letter-spacing: 0.08em;">Normal • Navegación</p>
+            </div>
+            <div class="flex items-baseline gap-4 border-b pb-3">
+              <span class="text-sm text-gray-500 w-32">0.1em</span>
+              <p class="uppercase" style="letter-spacing: 0.1em;">Amplio • Botones</p>
+            </div>
+            <div class="flex items-baseline gap-4 border-b pb-3">
+              <span class="text-sm text-gray-500 w-32">0.12em</span>
+              <p class="uppercase" style="letter-spacing: 0.12em;">Muy amplio • Mega Menu</p>
+            </div>
+            <div class="flex items-baseline gap-4 border-b pb-3">
+              <span class="text-sm text-gray-500 w-32">0.15em</span>
+              <p class="uppercase" style="letter-spacing: 0.15em;">Extra amplio • Títulos grandes</p>
+            </div>
+            <div class="flex items-baseline gap-4 border-b pb-3">
+              <span class="text-sm text-gray-500 w-32">0.2em</span>
+              <p class="uppercase" style="letter-spacing: 0.2em;">Máximo • Hero slider</p>
+            </div>
+            <div class="flex items-baseline gap-4 border-b pb-3">
+              <span class="text-sm text-gray-500 w-32">0.4em</span>
+              <p class="uppercase text-xs" style="letter-spacing: 0.4em;">Eyebrow • Etiquetas</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spacing Scale -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold uppercase mb-8" style="font-family: var(--font-primary), 'Poppins', sans-serif; letter-spacing: 0.1em;">Escala de Espaciado</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div class="space-demo">
+            <div class="space-box" style="height: 0.25rem; background: #c7a589;"></div>
+            <p class="text-sm mt-2">0.25rem (4px)</p>
+          </div>
+          <div class="space-demo">
+            <div class="space-box" style="height: 0.5rem; background: #c7a589;"></div>
+            <p class="text-sm mt-2">0.5rem (8px)</p>
+          </div>
+          <div class="space-demo">
+            <div class="space-box" style="height: 0.75rem; background: #c7a589;"></div>
+            <p class="text-sm mt-2">0.75rem (12px)</p>
+          </div>
+          <div class="space-demo">
+            <div class="space-box" style="height: 1rem; background: #c7a589;"></div>
+            <p class="text-sm mt-2">1rem (16px)</p>
+          </div>
+          <div class="space-demo">
+            <div class="space-box" style="height: 1.5rem; background: #c7a589;"></div>
+            <p class="text-sm mt-2">1.5rem (24px)</p>
+          </div>
+          <div class="space-demo">
+            <div class="space-box" style="height: 2rem; background: #c7a589;"></div>
+            <p class="text-sm mt-2">2rem (32px)</p>
+          </div>
+          <div class="space-demo">
+            <div class="space-box" style="height: 3rem; background: #c7a589;"></div>
+            <p class="text-sm mt-2">3rem (48px)</p>
+          </div>
+          <div class="space-demo">
+            <div class="space-box" style="height: 4rem; background: #c7a589;"></div>
+            <p class="text-sm mt-2">4rem (64px)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Component Examples -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold uppercase mb-8" style="font-family: var(--font-primary), 'Poppins', sans-serif; letter-spacing: 0.1em;">Componentes</h2>
+
+        <!-- Buttons -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-6 uppercase tracking-wide text-gray-700">Botones</h3>
+          <div class="flex flex-wrap gap-4">
+            <button class="px-6 py-2 border-2 border-current uppercase tracking-widest hover:bg-gray-900 hover:text-white transition-colors" style="font-size: 0.75rem; color: #1a1a1a;">Ghost Button</button>
+            <button class="px-6 py-2 bg-gray-900 text-white border-2 border-gray-900 uppercase tracking-widest hover:bg-white hover:text-gray-900 transition-colors" style="font-size: 0.75rem;">Solid Button</button>
+            <button class="px-4 py-1.5 border-2 border-current uppercase tracking-widest text-xs" style="font-size: 0.65rem; color: #1a1a1a;">Small Button</button>
+          </div>
+        </div>
+
+        <!-- Pills/Filters -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-6 uppercase tracking-wide text-gray-700">Pills / Filtros</h3>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-white border border-gray-300 rounded-full text-xs uppercase tracking-wide cursor-pointer hover:border-gray-600">Filtro 1</span>
+            <span class="px-4 py-2 bg-gray-900 text-white border border-gray-900 rounded-full text-xs uppercase tracking-wide cursor-pointer">Activo</span>
+            <span class="px-4 py-2 bg-white border border-gray-300 rounded-full text-xs uppercase tracking-wide cursor-pointer hover:border-gray-600">Filtro 3</span>
+          </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="mb-12">
+          <h3 class="text-xl font-semibold mb-6 uppercase tracking-wide text-gray-700">Cards</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+              <div class="aspect-square bg-gray-200"></div>
+              <div class="p-4">
+                <p class="text-xs uppercase tracking-wider text-gray-500 mb-1">Colección</p>
+                <h4 class="font-semibold mb-2">SKU 123456</h4>
+                <p class="text-sm text-gray-600">Color • Patrón</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</Base>
+
+<style>
+  .style-guide {
+    background: #fafafa;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Color Swatches */
+  .color-swatch {
+    text-align: center;
+  }
+
+  .swatch-box {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .swatch-info {
+    text-align: left;
+  }
+
+  .swatch-name {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .swatch-hex {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-family: 'Courier New', monospace;
+  }
+
+  .swatch-var {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Mini Swatches */
+  .color-swatch-mini {
+    text-align: center;
+  }
+
+  .swatch-box-mini {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .swatch-name-mini {
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.125rem;
+  }
+
+  .swatch-hex-mini {
+    font-size: 0.65rem;
+    color: #6b7280;
+    font-family: 'Courier New', monospace;
+  }
+
+  /* Font Cards */
+  .font-card {
+    background: white;
+  }
+
+  /* Type Samples */
+  .type-sample {
+    transition: background 0.2s;
+  }
+
+  .type-sample:hover {
+    background: #f9fafb;
+  }
+
+  /* Space Demo */
+  .space-demo {
+    text-align: center;
+  }
+
+  .space-box {
+    width: 100%;
+    border-radius: 0.25rem;
+  }
+</style>

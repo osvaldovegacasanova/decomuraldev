@@ -1,0 +1,32 @@
+[
+  {
+    "indexorder": 1,
+    "eyebrow": "Showroom",
+    "title": "Decomural Vitacura",
+    "description": "Te asesoramos para que hagas realidad tu proyecto",
+    "sampleImage": "tienda2.webp",
+    "ambientImage": "tienda1.webp",
+    "background": "#f5f5f2",
+    "textColor": "#2b2b2b",
+    "link": "https://calendly.com/animadeco/nueva-reunion?back=1&month=2025-12",
+    "linkLabel": "Agendar una Visita",
+    "slidertype": "url",
+    "imagefolder": "tienda",
+    "collection": ""
+  },
+  {
+    "indexorder": 2,
+    "eyebrow": "Texturas naturales",
+    "title": "Elements II",
+    "description": "Elementos naturales para un living contemporáneo.",
+    "sampleImage": "300434.webp",
+    "ambientImage": "300434_4-768x1024.webp",
+    "background": "#10261d",
+    "textColor": "#ffffff",
+    "link": "catalogo.html",
+    "linkLabel": "Explorar Elements II",
+    "slidertype": "collection",
+    "imagefolder": "elementsII",
+    "collection": "elements-ii"
+  }
+]

@@ -1,0 +1,7 @@
+# Excel master file (local only, NEVER commit)
+data.xlsx
+*.xlsx
+
+# But ensure generated content IS committed
+!nextspace-astro/src/data/*.json
+!nextspace-astro/src/content/**/*.md

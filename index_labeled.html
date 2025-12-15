@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[page_title]</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&amp;family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Segment: Announcement Banner -->
+  <div class="announcement">
+    [announcement]
+  </div>
+  <!-- Segment: Header & Mega Menu -->
+  <header class="site-header">
+    <div class="logo">
+      <img src="Logo-Decomural-02-1024x193.webp" alt="[brand_name]" />
+    </div>
+    <div class="nav-group">
+      <nav class="primary-nav">
+        <ul>
+          <li><a href="#" data-mega="true" data-collection="[coleccion_nav_1]|[coleccion_nav_2]|[coleccion_nav_3]|[coleccion_nav_4]|[coleccion_nav_5]|[coleccion_nav_6]|[coleccion_nav_7]|[coleccion_nav_8]">[nav_disenos]</a></li>
+          <li><a href="#" data-mega="true" data-collection="[coleccion_personalizados]">[nav_personalizados]</a></li>
+          <li><a href="#" class="active" data-mega="true" data-collection="[coleccion_infantil_1]|[coleccion_infantil_2]|[coleccion_infantil_3]">[nav_infantiles]</a></li>
+          <li><a href="#" data-mega="true" data-collection="[coleccion_vinilico_1]|[coleccion_vinilico_2]|[coleccion_vinilico_3]|[coleccion_vinilico_4]">[nav_vinilicos]</a></li>
+          <li><a href="#" data-collection="">[nav_cortinas_persianas]</a></li>
+          <li><a href="#" data-collection="">[nav_blog]</a></li>
+          <li><a href="#" data-collection="">[nav_puntos_venta]</a></li>
+        </ul>
+      </nav>
+      <div class="mega-menu" aria-hidden="true">
+        <div class="mega-columns">
+          <div class="mega-col">
+            <p class="mega-heading">[mega_collection_heading]</p>
+            <ul class="mega-list" data-collection-list>
+              <li>[collection_item_1]</li>
+              <li>[collection_item_2]</li>
+              <li>[collection_item_3]</li>
+              <li>[collection_item_4]</li>
+              <li>[collection_item_5]</li>
+              <li>[collection_item_6]</li>
+              <li>[collection_item_7]</li>
+              <li>[collection_item_8]</li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-heading">[mega_color_heading]</p>
+            <ul class="mega-list swatches">
+              <li><span class="dot black"></span> [color_negro]</li>
+              <li><span class="dot blue"></span> [color_azul]</li>
+              <li><span class="dot brown"></span> [color_marron]</li>
+              <li><span class="dot green"></span> [color_verde]</li>
+              <li><span class="dot grey"></span> [color_gris]</li>
+              <li><span class="dot neutral"></span> [color_neutro]</li>
+              <li><span class="dot pink"></span> [color_rosa]</li>
+              <li><span class="dot purple"></span> [color_purpura]</li>
+              <li><span class="dot red"></span> [color_rojo]</li>
+              <li><span class="dot white"></span> [color_blanco]</li>
+              <li><span class="dot yellow"></span> [color_amarillo]</li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-heading">[mega_pattern_heading]</p>
+            <ul class="mega-list">
+              <li>[pattern_abstract]</li>
+              <li>[pattern_animal]</li>
+              <li>[pattern_floral]</li>
+              <li>[pattern_geometrico]</li>
+              <li>[pattern_landscape]</li>
+              <li>[pattern_tropical]</li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <p class="mega-heading">[mega_info_heading]</p>
+            <ul class="mega-list">
+              <li>[info_step_by_step]</li>
+              <li>[info_faqs]</li>
+            </ul>
+          </div>
+          <div class="mega-col highlight">
+            <div class="mega-image">
+              <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&q=80" alt="[highlight_alt]" />
+            </div>
+            <p class="mega-heading">[highlight_heading]</p>
+            <p class="mega-text">[highlight_text]</p>
+            <button class="ghost small">[highlight_cta]</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Segment: Hero Slider -->
+    <section class="hero-slider swiper" data-hero-swiper aria-label="[slider_aria_label]" id="slider">
+      <div class="swiper-wrapper slider-track" data-slider-track></div>
+      <button class="slider-control prev swiper-button-prev" type="button" aria-label="[slider_prev_aria]" data-slider-prev></button>
+      <button class="slider-control next swiper-button-next" type="button" aria-label="[slider_next_aria]" data-slider-next></button>
+      <div class="slider-dots swiper-pagination" data-slider-dots></div>
+    </section>
+
+
+
+    <!-- Segment: Collection Showcase -->
+    <section class="collection-showcase">
+      <div class="section-header">
+        <p class="eyebrow">[linea_label]</p>
+        <h2>[linea_disenos_title]</h2>
+      </div>
+      <div class="collection-showcase-grid" data-collection-showcase="disenos"></div>
+      <noscript>
+        <p>[noscript_message]</p>
+      </noscript>
+    </section>
+    <section class="collection-showcase">
+      <div class="section-header">
+        <p class="eyebrow">[linea_label]</p>
+        <h2>[linea_personalizados_title]</h2>
+      </div>
+      <div class="collection-showcase-grid" data-collection-showcase="personalizados"></div>
+      <noscript>
+        <p>[noscript_message]</p>
+      </noscript>
+    </section>
+    <section class="collection-showcase">
+      <div class="section-header">
+        <p class="eyebrow">[linea_label]</p>
+        <h2>[linea_infantiles_title]</h2>
+      </div>
+      <div class="collection-showcase-grid" data-collection-showcase="infantiles"></div>
+      <noscript>
+        <p>[noscript_message]</p>
+      </noscript>
+    </section>
+    <section class="collection-showcase">
+      <div class="section-header">
+        <p class="eyebrow">[linea_label]</p>
+        <h2>[linea_vinilicos_title]</h2>
+      </div>
+      <div class="collection-showcase-grid" data-collection-showcase="vinilicos"></div>
+      <noscript>
+        <p>[noscript_message]</p>
+      </noscript>
+    </section>
+
+
+    <!-- Segment: FAQ -->
+    <section class="faq">
+      <div class="faq-header">
+        <p class="eyebrow">[faq_eyebrow]</p>
+        <h2>[faq_title]</h2>
+        <p class="lede">[faq_lede]</p>
+      </div>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="true">
+            [faq_q1]
+          </button>
+          <div class="faq-body">
+            <p>[faq_a1]</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            [faq_q2]
+          </button>
+          <div class="faq-body" hidden>
+            <p>[faq_a2]</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            [faq_q3]
+          </button>
+          <div class="faq-body" hidden>
+            <p>[faq_a3]</p>
+          </div>
+        </article>
+        <article class="faq-item">
+          <button class="faq-trigger" type="button" aria-expanded="false">
+            [faq_q4]
+          </button>
+          <div class="faq-body" hidden>
+            <p>[faq_a4]</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Segment: Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>[footer_attention_heading]</h3>
+          <ul>
+            <li><a href="#">[footer_attention_shipping]</a></li>
+            <li><a href="#">[footer_attention_order_status]</a></li>
+            <li><a href="#">[footer_attention_installation]</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>[footer_company_heading]</h3>
+          <ul>
+            <li><a href="#">[footer_company_history]</a></li>
+            <li><a href="#">[footer_company_sustainability]</a></li>
+            <li><a href="#">[footer_company_press]</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>[footer_inspiration_heading]</h3>
+          <ul>
+            <li><a href="#">[footer_inspiration_blog]</a></li>
+            <li><a href="#">[footer_inspiration_catalog]</a></li>
+            <li><a href="#">[footer_inspiration_collections]</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <p class="eyebrow">[newsletter_label]</p>
+          <h3>[newsletter_title]</h3>
+          <p>[newsletter_body]</p>
+          <form class="newsletter-form">
+            <label class="sr-only" for="newsletter-email">[newsletter_input_label]</label>
+            <input id="newsletter-email" type="email" placeholder="[newsletter_placeholder]" required />
+            <button type="submit">[newsletter_cta]</button>
+          </form>
+          <small>[newsletter_legal]</small>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="social-links" aria-label="[socials_aria_label]">
+        <a href="#" aria-label="Instagram">[social_instagram]</a>
+        <a href="#" aria-label="Pinterest">[social_pinterest]</a>
+        <a href="#" aria-label="Facebook">[social_facebook]</a>
+        <a href="#" aria-label="YouTube">[social_youtube]</a>
+      </div>
+      <p>[copyright_notice]</p>
+      <div class="payments">
+        <span>[payment_visa]</span>
+        <span>[payment_mastercard]</span>
+        <span>[payment_paypal]</span>
+        <span>[payment_amex]</span>
+      </div>
+    </div>
+  </footer>
+  <!-- Segment: Page Script -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const encodeAsset = (path = '') => (path ? encodeURI(path) : '');
+
+      const heroSlides = [
+        {
+          eyebrow: '[eyebrow]',
+          title: '[title]',
+          description: '[description]',
+          sampleImage: 'Stories of Life/369223.webp',
+          ambientImage: 'Stories of Life/369223_3-768x512.webp',
+          background: '#3d1c1f',
+          textColor: '#ffffff',
+          link: 'catalogo.html',
+          linkLabel: '[link_label]'
+        },
+        {
+          eyebrow: '[eyebrow_2]',
+          title: '[title_2]',
+          description: '[description_2]',
+          sampleImage: 'Elements II/300434.webp',
+          ambientImage: 'Elements II/300434_4-768x1024.webp',
+          background: '#10261d',
+          textColor: '#ffffff',
+          link: '#colecciones',
+          linkLabel: '[link_label_2]'
+        }
+      ];
+
+      const storiesOfLifeSkus = [
+        { codigo: '369223', filename: '369223_3-768x512.webp', hoverFilename: '369223.webp', disponible: 1, color: 'Gris' },
+        { codigo: '369224', filename: '369224_3-768x512.webp', hoverFilename: '369224.webp', disponible: 1, color: 'Marrón' },
+        { codigo: '369226', filename: '369226_3-768x512.webp', hoverFilename: '369226.webp', disponible: 1, color: 'Gris' },
+        { codigo: '369251', filename: '369251_3-768x512.webp', hoverFilename: '369251.webp', disponible: 1, color: 'Marrón' },
+        { codigo: '369253', filename: '369253_3-768x512.webp', hoverFilename: '369253.webp', disponible: 1, color: 'Blanco' },
+        { codigo: '369254', filename: '369254.webp', hoverFilename: '369254_6.webp', disponible: 1, color: 'Beige' },
+        { codigo: '369255', filename: '369255_3-768x512.webp', hoverFilename: '369255.webp', disponible: 1, color: 'Gris' },
+        { codigo: '369256', filename: '369256.webp', hoverFilename: '369256_6.webp', disponible: 1, color: 'Beige' },
+        { codigo: '369257', filename: '369257_3-768x512.webp', hoverFilename: '369257.webp', disponible: 1, color: 'Marrón' },
+        { codigo: '369258', filename: '369258.webp', hoverFilename: '369258_6.webp', disponible: 1, color: 'Azul' },
+        { codigo: '392161', filename: '392161_3-768x512.webp', hoverFilename: '392161.webp', disponible: 1, color: 'Beige' },
+        { codigo: '392163', filename: '392163.webp', hoverFilename: '392163_6.webp', disponible: 1, color: 'Gris' },
+        { codigo: '392164', filename: '392164_2-768x417.webp', hoverFilename: '392164.webp', disponible: 1, color: 'Beige' },
+        { codigo: '396471', filename: '396471_3-768x512.webp', hoverFilename: '396471_1.webp', disponible: 1, color: 'Mix' },
+        { codigo: '396472', filename: '396472_13-768x512.webp', hoverFilename: '', disponible: 0, color: 'default' },
+        { codigo: '396473', filename: '396473_2-768x512.webp', hoverFilename: '396473.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396474', filename: '396474_3-768x512.webp', hoverFilename: '396474.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396481', filename: '396481_3-768x576.webp', hoverFilename: '396481.webp', disponible: 1, color: 'Verde' },
+        { codigo: '396482', filename: '396482.webp', hoverFilename: '396482_6.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396483', filename: '396483_3-768x512.webp', hoverFilename: '396483.webp', disponible: 1, color: 'Beige' },
+        { codigo: '396484', filename: '396484_4-768x572.webp', hoverFilename: '396484.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396485', filename: '396485.webp', hoverFilename: '396485_6.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396486', filename: '396486_3-768x512.webp', hoverFilename: '396486.webp', disponible: 1, color: 'Gris' },
+        { codigo: '396501', filename: '396501_2-768x512.webp', hoverFilename: '396501.webp', disponible: 1, color: 'Mix' },
+        { codigo: '396502', filename: '396502.webp', hoverFilename: '', disponible: 1, color: 'Mix' }
+      ];
+      const disenoCollections = ['[coleccion_filter_item_1]', '[coleccion_filter_item_2]'];
+      const collectionShowcases = {
+        disenos: [
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Stories of Life/369223_3-768x512.webp',
+            link: 'catalogo.html',
+            linkLabel: '[cta_label]'
+          },
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Elements II/300434_4-768x1024.webp',
+            link: '#colecciones',
+            linkLabel: '[cta_label]'
+          },
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Drawn into Nature - Decomural_files/306887_7-768x512.webp',
+            link: '#',
+            linkLabel: '[cta_label]'
+          }
+        ],
+        personalizados: [
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Elements II/300431_3-768x1024.webp',
+            link: 'catalogo.html',
+            linkLabel: '[cta_label]'
+          },
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Van Gogh II/Catalogo-Van-Gogh-II_Pagina_02_Imagen_0002.webp',
+            link: '#',
+            linkLabel: '[cta_label]'
+          },
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Drawn into Nature - Decomural_files/306894.webp',
+            link: '#',
+            linkLabel: '[cta_label]'
+          }
+        ],
+        infantiles: [
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Stories of Life/369256.webp',
+            link: 'catalogo.html',
+            linkLabel: '[cta_label]'
+          },
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Stories of Life/369257_3-768x512.webp',
+            link: '#',
+            linkLabel: '[cta_label]'
+          },
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Stories of Life/369258.webp',
+            link: '#',
+            linkLabel: '[cta_label]'
+          }
+        ],
+        vinilicos: [
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Elements II/300434.webp',
+            link: '#',
+            linkLabel: '[cta_label]'
+          },
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Drawn into Nature - Decomural_files/306887_3-768x512.webp',
+            link: '#',
+            linkLabel: '[cta_label]'
+          },
+          {
+            eyebrow: '[marca]',
+            title: '[coleccion]',
+            description: '[descripcion]',
+            image: 'Drawn into Nature - Decomural_files/306886_7-768x543.webp',
+            link: '#',
+            linkLabel: '[cta_label]'
+          }
+        ]
+      };
+
+      const normalizeColorKey = (value = '') =>
+        value
+          .toString()
+          .trim()
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+
+      const getColorClass = (colorName = '') => {
+        const colorKey = normalizeColorKey(colorName);
+        const map = {
+          gris: 'grey',
+          marron: 'brown',
+          blanco: 'white',
+          beige: 'beige',
+          azul: 'blue',
+          mix: 'mix',
+          default: 'default',
+          verde: 'green'
+        };
+        return map[colorKey] || '';
+      };
+
+      const renderHeroSwiper = () => {
+        const track = document.querySelector('[data-slider-track]');
+        const pagination = document.querySelector('[data-slider-dots]');
+        const sliderEl = document.querySelector('[data-hero-swiper]');
+        if (!track || !pagination || !sliderEl) return;
+
+        track.innerHTML = heroSlides
+          .map(
+            (slide) => `
+          <article class="swiper-slide hero-slide" style="background:${slide.background}; --slide-text:${slide.textColor};">
+            <div class="slide-panel">
+              <img src="${encodeAsset(slide.sampleImage)}" alt="Detalle ${slide.title}" loading="lazy" />
+            </div>
+            <div class="slide-copy">
+              <p class="eyebrow">${slide.eyebrow}</p>
+              <h2>${slide.title}</h2>
+              <p>${slide.description}</p>
+              <a class="ghost invert" href="${slide.link}">${slide.linkLabel}</a>
+            </div>
+            <div class="slide-panel">
+              <img src="${encodeAsset(slide.ambientImage)}" alt="${slide.title} en ambiente" loading="lazy" />
+            </div>
+          </article>
+        `
+          )
+          .join('');
+
+        new Swiper(sliderEl, {
+          loop: true,
+          autoplay: {
+            delay: 6000,
+            disableOnInteraction: false
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+          },
+          pagination: {
+            el: pagination,
+            clickable: true
+          },
+          speed: 900
+        });
+      };
+
+      const renderCollectionShowcases = () => {
+        const grids = document.querySelectorAll('[data-collection-showcase]');
+        grids.forEach((grid) => {
+          const key = grid.getAttribute('data-collection-showcase');
+          const items = collectionShowcases[key] || [];
+          grid.innerHTML = items.length
+            ? items
+                .map(
+                  (item) => `
+              <article class="showcase-card">
+                <div class="showcase-media">
+                  <img src="${encodeAsset(item.image)}" alt="${item.title}" loading="lazy" />
+                </div>
+                <div class="showcase-body">
+                  <p class="showcase-eyebrow serif">${item.eyebrow}</p>
+                  <h3 class="showcase-title">${item.title}</h3>
+                  <p>${item.description}</p>
+                  ${
+                    item.link
+                      ? `<a class="text-link" href="${item.link}">${item.linkLabel || '[cta_default]'}</a>`
+                      : ''
+                  }
+                </div>
+              </article>
+            `
+                )
+                .join('')
+            : '<p class="empty-state">[showcase_empty_state]</p>';
+        });
+
+        const total = Object.values(collectionShowcases).reduce((sum, list) => sum + (list?.length || 0), 0);
+        const resultsCount = document.querySelector('[data-results-count]');
+        if (resultsCount) {
+          resultsCount.textContent = `[results_prefix] ${total}`;
+        }
+      };
+
+      const renderColorFilter = () => {
+        const colorFilter = document.querySelector('[data-color-filter]');
+        if (!colorFilter) return;
+
+        const uniqueColors = [];
+        const seen = new Set();
+        storiesOfLifeSkus.forEach((item) => {
+          const colorKey = normalizeColorKey(item.color);
+          if (!colorKey || seen.has(colorKey)) return;
+          seen.add(colorKey);
+          uniqueColors.push({ key: colorKey, label: item.color });
+        });
+
+        if (!uniqueColors.length) {
+          colorFilter.innerHTML = '<li>[colors_empty_state]</li>';
+          return;
+        }
+
+        colorFilter.innerHTML = uniqueColors
+          .map(({ label, key }) => {
+            const dotClass = getColorClass(key);
+            const dot = dotClass ? `<span class="dot ${dotClass}"></span>` : '';
+            return `<li>${dot}${label}</li>`;
+          })
+          .join('');
+      };
+
+      const renderColeccionFilter = () => {
+        const coleccionFilter = document.querySelector('[data-collection-filter]');
+        if (!coleccionFilter) return;
+
+        if (!disenoCollections.length) {
+          coleccionFilter.innerHTML = '<li>[collections_empty_state]</li>';
+          return;
+        }
+
+        coleccionFilter.innerHTML = disenoCollections
+          .map((name) => `<li>${name}</li>`)
+          .join('');
+      };
+
+      renderHeroSwiper();
+      renderCollectionShowcases();
+      renderColorFilter();
+      renderColeccionFilter();
+
+      const toggle = document.querySelector('.hero-toggle');
+      const heroDescription = document.getElementById('hero-description');
+      const heroCopy = {
+        short: '[hero_short]',
+        long: '[hero_long]'
+      };
+
+      if (toggle && heroDescription) {
+        const setExpandedState = (expanded) => {
+          heroDescription.innerHTML = expanded ? heroCopy.long : heroCopy.short;
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggle.textContent = expanded ? '[hero_toggle_less]' : '[hero_toggle_more]';
+        };
+
+        toggle.addEventListener('click', () => {
+          const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+          setExpandedState(!isExpanded);
+        });
+
+        setExpandedState(false);
+      }
+
+      const navLinks = document.querySelectorAll('.primary-nav [data-collection]');
+      const collectionList = document.querySelector('[data-collection-list]');
+      const megaTriggers = document.querySelectorAll('.primary-nav [data-mega="true"]');
+      const nonMegaLinks = document.querySelectorAll('.primary-nav a:not([data-mega="true"])');
+      const renderCollection = (link) => {
+        if (!collectionList || !link) return;
+        const values = (link.getAttribute('data-collection') || '')
+          .split('|')
+          .map((v) => v.trim())
+          .filter(Boolean);
+        collectionList.innerHTML = values.length
+          ? values.map((text) => `<li>${text}</li>`).join('')
+          : '<li>[mega_empty_state]</li>';
+      };
+
+      navLinks.forEach((link) => {
+        link.addEventListener('mouseenter', () => renderCollection(link));
+        link.addEventListener('focus', () => renderCollection(link));
+      });
+
+      if (navLinks.length) {
+        renderCollection(navLinks[0]);
+      }
+
+      const navGroup = document.querySelector('.nav-group');
+      const megaMenu = document.querySelector('.mega-menu');
+      let megaTimer;
+
+      const openMegaMenu = () => {
+        if (!navGroup || !megaMenu) return;
+        clearTimeout(megaTimer);
+        navGroup.classList.add('mega-open');
+        megaMenu.setAttribute('aria-hidden', 'false');
+      };
+
+      const closeMegaMenu = (delay = 150) => {
+        if (!navGroup || !megaMenu) return;
+        clearTimeout(megaTimer);
+        megaTimer = setTimeout(() => {
+          navGroup.classList.remove('mega-open');
+          megaMenu.setAttribute('aria-hidden', 'true');
+        }, delay);
+      };
+
+      if (navGroup && megaMenu) {
+        megaTriggers.forEach((trigger) => {
+          trigger.addEventListener('mouseenter', openMegaMenu);
+          trigger.addEventListener('focus', openMegaMenu);
+        });
+
+        ['mouseenter', 'focusin'].forEach((evt) => {
+          megaMenu.addEventListener(evt, openMegaMenu);
+        });
+
+        navGroup.addEventListener('mouseleave', () => closeMegaMenu());
+        megaMenu.addEventListener('mouseleave', () => closeMegaMenu());
+
+        navGroup.addEventListener('focusout', (event) => {
+          if (event.relatedTarget && navGroup.contains(event.relatedTarget)) return;
+          closeMegaMenu();
+        });
+
+        megaMenu.addEventListener('focusout', (event) => {
+          if (event.relatedTarget && megaMenu.contains(event.relatedTarget)) return;
+          closeMegaMenu();
+        });
+
+        nonMegaLinks.forEach((link) => {
+          link.addEventListener('mouseenter', () => closeMegaMenu(0));
+          link.addEventListener('focus', () => closeMegaMenu(0));
+        });
+      }
+
+      const faqTriggers = document.querySelectorAll('.faq-trigger');
+      faqTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const expanded = trigger.getAttribute('aria-expanded') === 'true';
+          faqTriggers.forEach((btn) => {
+            if (btn !== trigger) {
+              btn.setAttribute('aria-expanded', 'false');
+              const sibling = btn.nextElementSibling;
+              if (sibling) sibling.hidden = true;
+            }
+          });
+          trigger.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          const body = trigger.nextElementSibling;
+          if (body) body.hidden = expanded;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '@/layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const collections = await getCollection('collections');
+  return collections.map((collection) => ({
+    params: { slug: collection.data.slug },
+    props: { collection },
+  }));
+}
+
+const { collection } = Astro.props;
+const { title, description, linea, folder, sku_count, available_colors, available_patterns } = collection.data;
+
+// Get wallpapers for this collection
+const allWallpapers = await getCollection('wallpapers', ({ data }) => {
+  return data.coleccion_slug === collection.data.slug && data.disponible === true;
+});
+
+// Get ambiente images from wallpapers
+const ambienteImages = allWallpapers
+  .flatMap(w => w.data.images.ambiente || [])
+  .filter(Boolean)
+  .slice(0, 6); // Limit to 6 images for gallery
+
+// Get sample images as fallback
+const sampleImages = allWallpapers
+  .map(w => w.data.images.sample)
+  .filter(Boolean)
+  .slice(0, 6);
+
+const galleryImages = ambienteImages.length > 0 ? ambienteImages : sampleImages;
+---
+
+<Base title={`${title} - Colección de Papeles Murales`} description={description}>
+  <!-- Breadcrumbs -->
+  <div class="container py-4">
+    <nav class="breadcrumbs text-xs uppercase tracking-widest text-gray-600">
+      <a href="/" class="hover:text-primary">Home</a>
+      <span class="mx-2">–</span>
+      <a href="/catalogo" class="hover:text-primary">Catálogo</a>
+      <span class="mx-2">–</span>
+      <span>{title}</span>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="collection-hero py-12 md:py-16 bg-gray-50">
+    <div class="container max-w-4xl text-center">
+      <p class="eyebrow text-xs uppercase tracking-widest text-gray-500 mb-4">
+        {linea}
+      </p>
+      <h1 class="text-4xl md:text-6xl font-bold uppercase tracking-wide mb-6">
+        {title}
+      </h1>
+      {description && (
+        <p class="text-lg md:text-xl text-gray-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+          {description}
+        </p>
+      )}
+
+      <!-- Collection Stats -->
+      <div class="collection-stats flex flex-wrap justify-center gap-6 mb-8 text-sm">
+        {sku_count && (
+          <div class="stat">
+            <span class="font-semibold text-2xl text-primary">{sku_count}</span>
+            <span class="block text-gray-600 uppercase tracking-wide">Diseños</span>
+          </div>
+        )}
+        {available_colors && available_colors.length > 0 && (
+          <div class="stat">
+            <span class="font-semibold text-2xl text-primary">{available_colors.length}</span>
+            <span class="block text-gray-600 uppercase tracking-wide">Colores</span>
+          </div>
+        )}
+        {available_patterns && available_patterns.length > 0 && (
+          <div class="stat">
+            <span class="font-semibold text-2xl text-primary">{available_patterns.length}</span>
+            <span class="block text-gray-600 uppercase tracking-wide">Patrones</span>
+          </div>
+        )}
+      </div>
+
+      <!-- CTA Button -->
+      <a
+        href={`/catalogo?coleccion=${collection.data.slug}`}
+        class="inline-block px-8 py-4 bg-primary text-white font-semibold uppercase tracking-wider text-sm hover:bg-opacity-90 transition-all shadow-lg hover:shadow-xl"
+      >
+        Explorar Catálogo →
+      </a>
+    </div>
+  </section>
+
+  <!-- Image Gallery -->
+  {galleryImages.length > 0 && (
+    <section class="collection-gallery py-12 md:py-16">
+      <div class="container">
+        <h2 class="text-3xl font-bold text-center mb-12 uppercase tracking-wide">
+          Galería de Ambientes
+        </h2>
+
+        <div class="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryImages.map((image, index) => (
+            <div
+              class="gallery-item aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <img
+                src={image}
+                alt={`${title} ambiente ${index + 1}`}
+                class="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Available Colors -->
+  {available_colors && available_colors.length > 0 && (
+    <section class="collection-colors py-12 md:py-16 bg-gray-50">
+      <div class="container max-w-4xl">
+        <h2 class="text-3xl font-bold text-center mb-8 uppercase tracking-wide">
+          Colores Disponibles
+        </h2>
+
+        <div class="colors-list flex flex-wrap justify-center gap-4">
+          {available_colors.map((color) => (
+            <a
+              href={`/catalogo?coleccion=${collection.data.slug}&color=${color}`}
+              class="color-tag px-4 py-2 bg-white border-2 border-gray-300 rounded-full text-sm uppercase tracking-wide hover:border-primary hover:text-primary transition-colors"
+            >
+              {color}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Available Patterns -->
+  {available_patterns && available_patterns.length > 0 && (
+    <section class="collection-patterns py-12 md:py-16">
+      <div class="container max-w-4xl">
+        <h2 class="text-3xl font-bold text-center mb-8 uppercase tracking-wide">
+          Patrones Disponibles
+        </h2>
+
+        <div class="patterns-list flex flex-wrap justify-center gap-4">
+          {available_patterns.map((pattern) => (
+            <a
+              href={`/catalogo?coleccion=${collection.data.slug}&patron=${pattern}`}
+              class="pattern-tag px-4 py-2 bg-white border-2 border-gray-300 rounded-full text-sm uppercase tracking-wide hover:border-primary hover:text-primary transition-colors"
+            >
+              {pattern}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Final CTA -->
+  <section class="collection-cta py-16 bg-gray-900 text-white">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">
+        Descubre Toda la Colección {title}
+      </h2>
+      <p class="text-lg text-gray-300 mb-8">
+        Explora todos los diseños disponibles y encuentra el papel mural perfecto para tu espacio.
+      </p>
+      <a
+        href={`/catalogo?coleccion=${collection.data.slug}`}
+        class="inline-block px-8 py-4 bg-white text-gray-900 font-semibold uppercase tracking-wider text-sm hover:bg-gray-100 transition-all shadow-lg"
+      >
+        Ver {sku_count} Diseños →
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .collection-hero {
+    background: linear-gradient(to bottom, #f9fafb 0%, #ffffff 100%);
+  }
+
+  .stat {
+    min-width: 100px;
+  }
+
+  .gallery-item img {
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    .collection-stats {
+      gap: 1rem;
+    }
+
+    .stat {
+      min-width: 80px;
+    }
+  }
+</style>

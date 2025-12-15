@@ -1,0 +1,72 @@
+{
+  "Diseños": {
+    "enabled": true,
+    "highlight": {
+      "image": "/images/wallpapers/storiesoflife/369255_3-768x512.webp",
+      "heading": "Colección Destacada",
+      "text": "La colección Stories of Life nace de la observación atenta del mundo natural que se transforma en ilustraciones llenas de vida.",
+      "cta": "Ver más",
+      "url": "/catalogo?coleccion=coleccion-destacada"
+    }
+  },
+  "Personalizados": {
+    "enabled": true,
+    "highlight": {
+      "image": "/images/wallpapers/antique/patttern-web-antique-02-768x512.jpg.webp",
+      "heading": "Personalizados",
+      "text": "Anima Deco Lorem ipsum dolor sit amet consectetur adipiscing elit, tristique tincidunt sed vulputate imperdiet facilisis, proin himenaeos pharetra vitae tortor est.",
+      "cta": "Ver más",
+      "url": "/catalogo?coleccion=personalizados"
+    }
+  },
+  "Infantiles": {
+    "enabled": true,
+    "highlight": {
+      "image": "/images/wallpapers/antique/patttern-web-antique-22-768x512.jpg.webp",
+      "heading": "Colección Destacada",
+      "text": "Infantiles Lorem ipsum dolor sit amet consectetur adipiscing elit, tristique tincidunt sed vulputate imperdiet facilisis, proin himenaeos pharetra vitae tortor est.",
+      "cta": "Ver más",
+      "url": "/catalogo?coleccion=coleccion-destacada"
+    }
+  },
+  "Vinilicos": {
+    "enabled": true,
+    "highlight": {
+      "image": "/images/wallpapers/antique/patttern-web-antique-41-768x512.jpg.webp",
+      "heading": "Colección Destacada",
+      "text": "Vinílico Lorem ipsum dolor sit amet consectetur adipiscing elit, tristique tincidunt sed vulputate imperdiet facilisis, proin himenaeos pharetra vitae tortor est.",
+      "cta": "Ver más",
+      "url": "/catalogo?coleccion=coleccion-destacada"
+    }
+  },
+  "Cortinas y Persianas": {
+    "enabled": false,
+    "highlight": {
+      "image": "",
+      "heading": "",
+      "text": "",
+      "cta": "",
+      "url": "/catalogo"
+    }
+  },
+  "Blog": {
+    "enabled": false,
+    "highlight": {
+      "image": "",
+      "heading": "",
+      "text": "",
+      "cta": "",
+      "url": "/catalogo"
+    }
+  },
+  "Puntos de Venta": {
+    "enabled": false,
+    "highlight": {
+      "image": "",
+      "heading": "",
+      "text": "",
+      "cta": "",
+      "url": "/catalogo"
+    }
+  }
+}
