@@ -2,6 +2,19 @@
 data.xlsx
 *.xlsx
 
+# Image source folders (local only, used by excel-to-astro.js)
+# These are SOURCE folders for the script to copy FROM
+# The actual site uses images in nextspace-astro/public/images/wallpapers/
+/antique/
+/elementsII/
+/Elements II/
+/miapaul/
+/rafias/
+/storiesoflife/
+/Stories of Life/
+/textum/
+/vangoghII/
+
 # But ensure generated content IS committed
 !nextspace-astro/src/data/*.json
 !nextspace-astro/src/content/**/*.md
