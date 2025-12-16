@@ -42,6 +42,12 @@
     "gtm_id": "GTM-XXXXXX"
   },
 
+  "whatsapp": {
+    "enable": true,
+    "phone": "56956460570",
+    "message": "Hola, necesito más información sobre los papeles murales"
+  },
+
   "metadata": {
     "meta_author": "Decomural",
     "meta_image": "/images/og-image.png",

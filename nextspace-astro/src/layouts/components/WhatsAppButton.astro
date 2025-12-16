@@ -1,0 +1,63 @@
+---
+const { phone = '56956460570', message = 'Hola, necesito más información' } = Astro.props;
+const whatsappLink = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+---
+
+<a
+  href={whatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-float"
+  aria-label="Contactar por WhatsApp"
+  title="Chatea con nosotros"
+>
+  <img src="/icons8-whatsapp-50.png" alt="WhatsApp" class="whatsapp-icon" />
+</a>
+
+<style>
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .whatsapp-float:hover {
+    background-color: #128c7e;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .whatsapp-icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .whatsapp-float {
+      bottom: 15px;
+      right: 15px;
+      width: 56px;
+      height: 56px;
+    }
+
+    .whatsapp-icon {
+      width: 28px;
+      height: 28px;
+    }
+  }
+</style>
+
