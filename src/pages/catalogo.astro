@@ -114,6 +114,37 @@ const wallpapersData = allWallpapers.map(w => ({
     <nav class="pagination" id="pagination" aria-label="Paginación">
       <!-- Pagination will be rendered by JavaScript -->
     </nav>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+      <button class="lightbox-close" aria-label="Cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="lightbox-content">
+        <img id="lightbox-image" src="" alt="" />
+        <div class="lightbox-nav" id="lightbox-nav" style="display: none;">
+          <button class="lightbox-arrow lightbox-prev" aria-label="Imagen anterior">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button class="lightbox-arrow lightbox-next" aria-label="Siguiente imagen">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="lightbox-info">
+        <p class="lightbox-collection" id="lightbox-collection"></p>
+        <h3 class="lightbox-title" id="lightbox-title"></h3>
+        <p class="lightbox-counter" id="lightbox-counter" style="display: none;">1 / 2</p>
+      </div>
+    </div>
   </main>
 </Base>
 
@@ -315,6 +346,14 @@ const wallpapersData = allWallpapers.map(w => ({
     collection: ''
   };
 
+  // Lightbox state
+  let lightboxState = {
+    isOpen: false,
+    currentProduct: null,
+    images: [], // Array of {src, type: 'sample'|'ambiente'}
+    currentIndex: 0
+  };
+
   // Initialize from URL params
   function initFromURL() {
     const params = new URLSearchParams(window.location.search);
@@ -472,7 +511,12 @@ const wallpapersData = allWallpapers.map(w => ({
     }
 
     grid.innerHTML = pageProducts.map(product => `
-      <article class="product-card">
+      <article class="product-card"
+        data-codigo="${product.codigo}"
+        data-sample="${product.images.sample || ''}"
+        data-ambiente="${product.images.ambiente ? JSON.stringify(product.images.ambiente).replace(/"/g, '&quot;') : '[]'}"
+        data-collection="${product.coleccion}"
+        data-title="SKU ${product.codigo}">
         <div class="card-media">
           <img
             src="${product.image || product.images.sample || '/images/placeholder.jpg'}"
@@ -510,6 +554,16 @@ const wallpapersData = allWallpapers.map(w => ({
           img.src = ambiente;
         });
       }
+    });
+
+    // Lightbox click handlers
+    grid.querySelectorAll('.card-media img').forEach(img => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = img.closest('.product-card');
+        openLightbox(card);
+      });
     });
   }
 
@@ -579,6 +633,7 @@ const wallpapersData = allWallpapers.map(w => ({
     applyFilters();
     initFilterDropdowns();
     initClearButton();
+    initLightbox();
   }
 
   // Initialize filter dropdowns
@@ -635,6 +690,151 @@ const wallpapersData = allWallpapers.map(w => ({
     // Close dropdowns on outside click
     document.addEventListener('click', () => {
       document.querySelectorAll('.filter-dropdown').forEach(d => d.classList.remove('show'));
+    });
+  }
+
+  // Open lightbox
+  function openLightbox(card) {
+    if (!card) return;
+
+    const sample = card.dataset.sample;
+    const ambienteStr = card.dataset.ambiente;
+
+    // Parse ambiente array safely
+    let ambiente = [];
+    try {
+      if (ambienteStr && ambienteStr !== 'null' && ambienteStr !== 'undefined' && ambienteStr.trim() !== '') {
+        // The browser automatically unescapes &quot; to " when reading from dataset
+        ambiente = JSON.parse(ambienteStr);
+        // Ensure it's an array
+        if (!Array.isArray(ambiente)) {
+          ambiente = [];
+        }
+      }
+    } catch (e) {
+      ambiente = [];
+    }
+
+    // Build images array (ambiente first, then sample)
+    lightboxState.images = [];
+    if (ambiente && ambiente.length > 0) {
+      ambiente.forEach(src => {
+        if (src) { // Only add if src exists
+          lightboxState.images.push({ src, type: 'ambiente' });
+        }
+      });
+    }
+    if (sample && sample !== 'null' && sample !== 'undefined' && sample !== '') {
+      lightboxState.images.push({ src: sample, type: 'sample' });
+    }
+
+    // Guard: no images available
+    if (lightboxState.images.length === 0) return;
+
+    lightboxState.currentProduct = {
+      collection: card.dataset.collection,
+      title: card.dataset.title
+    };
+    lightboxState.currentIndex = 0;
+    lightboxState.isOpen = true;
+
+    updateLightboxDisplay();
+    showLightbox();
+  }
+
+  // Close lightbox
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    setTimeout(() => {
+      lightboxState.isOpen = false;
+      lightboxState.currentProduct = null;
+      lightboxState.images = [];
+    }, 300);
+  }
+
+  // Update lightbox display
+  function updateLightboxDisplay() {
+    const img = document.getElementById('lightbox-image');
+    const collection = document.getElementById('lightbox-collection');
+    const title = document.getElementById('lightbox-title');
+    const counter = document.getElementById('lightbox-counter');
+    const nav = document.getElementById('lightbox-nav');
+
+    const currentImage = lightboxState.images[lightboxState.currentIndex];
+
+    img.src = currentImage.src;
+    img.alt = `${lightboxState.currentProduct.collection} - ${lightboxState.currentProduct.title}`;
+
+    collection.textContent = lightboxState.currentProduct.collection;
+    title.textContent = lightboxState.currentProduct.title;
+
+    // Show/hide navigation
+    if (lightboxState.images.length > 1) {
+      nav.style.display = 'flex';
+      counter.style.display = 'block';
+      counter.textContent = `${lightboxState.currentIndex + 1} / ${lightboxState.images.length}`;
+    } else {
+      nav.style.display = 'none';
+      counter.style.display = 'none';
+    }
+  }
+
+  // Show lightbox with animation
+  function showLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    requestAnimationFrame(() => {
+      lightbox.classList.add('open');
+    });
+  }
+
+  // Navigate images
+  function navigateLightbox(direction) {
+    const newIndex = lightboxState.currentIndex + direction;
+
+    if (newIndex >= 0 && newIndex < lightboxState.images.length) {
+      lightboxState.currentIndex = newIndex;
+      updateLightboxDisplay();
+    }
+  }
+
+  // Initialize lightbox event listeners
+  function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    const prevBtn = lightbox.querySelector('.lightbox-prev');
+    const nextBtn = lightbox.querySelector('.lightbox-next');
+
+    closeBtn.addEventListener('click', closeLightbox);
+    prevBtn.addEventListener('click', () => navigateLightbox(-1));
+    nextBtn.addEventListener('click', () => navigateLightbox(1));
+
+    // Click outside to close
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxState.isOpen) return;
+
+      switch(e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          navigateLightbox(-1);
+          break;
+        case 'ArrowRight':
+          navigateLightbox(1);
+          break;
+      }
     });
   }
 
